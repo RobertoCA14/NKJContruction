@@ -1,7 +1,6 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-
 import portada4 from "../assets/portada4.png";
 import portada3 from "../assets/portada3.png";
 
