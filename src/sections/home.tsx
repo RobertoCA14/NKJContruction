@@ -276,7 +276,7 @@ const Home = () => {
         </div>
       </section> */}
       {/* REPEAT CLIENTS*/}
-      <section id="services" className="text-white text-center py-16 px-4">
+      <section  className="text-white text-center py-16 px-4">
         <div className="max-w-6xl mx-auto bg-gray-600 py-10 px-6 rounded">
           <h2 className="text-3xl font-bold mb-12">REPEAT CLIENTS</h2>
           <div className="flex flex-col md:flex-row justify-center items-center gap-8">
