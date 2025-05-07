@@ -14,6 +14,7 @@ import hdsupplyLogo from "../assets/hdsupplyLogo .png";
 import FondoProjectListimg from "../assets/FondoProjectListimg.png";
 import bgContact from "../assets/bgcontact.jpeg";
 import { useState } from "react";
+import ServicesSection from "./ServicesSection"; // Ajusta el path
 
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -134,7 +135,7 @@ const Home = () => {
         </div>
 
         {/* Texto a la derecha */}
-        <div className="bg-neutral-900 text-white flex flex-col justify-center px-10 py-16 space-y-4">
+        <div className="bg-neutral-900 text-white flex flex-col justify-center items-center px-6 md:px-20 py-16 space-y-4 text-center">
           <h2 className="text-2xl md:text-3xl font-bold">
             We lay foundations <br /> with a personal touch
           </h2>
@@ -304,18 +305,7 @@ const Home = () => {
         </div>
       </section>
       {/* Nuestros servicios   */}
-      <section id="services" className="py-16">
-        <h2 className="text-3xl font-bold mb-8">Nuestros Servicios</h2>
-        <div className="grid md:grid-cols-3 gap-6 px-6">
-          <div className="bg-white shadow-md p-6 rounded">
-            Construcción General
-          </div>
-          <div className="bg-white shadow-md p-6 rounded">Remodelaciones</div>
-          <div className="bg-white shadow-md p-6 rounded">
-            Supervisión de Proyectos
-          </div>
-        </div>
-      </section>
+      <ServicesSection />
       {/* SUPPLIER REFERENCES */}
       <section className="bg-white text-center py-16 px-6">
         <div className="max-w-6xl mx-auto">
