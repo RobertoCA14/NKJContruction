@@ -4,7 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import portada4 from "../assets/portada4.png";
 import portada3 from "../assets/portada3.png";
-import edificio55 from "../assets/edificio55.png";
+
 const HeroCarousel: React.FC = () => {
   const images = [portada3, portada4];
 
