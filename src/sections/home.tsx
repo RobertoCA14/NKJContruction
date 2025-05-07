@@ -7,6 +7,7 @@ import edificio55 from "../assets/edificio55.png";
 import edifici711 from "../assets/edifici711.png";
 import repeatClient1 from "../assets/repeatClient1.png";
 import repeatClient2 from "../assets/repeatClient2.png";
+import nextProjectimg from "../assets/nextProjectimg.png";
 import gothamLogo from "../assets/gothamLogo .png";
 import beldenLogo from "../assets/beldenLogo .png";
 import hdsupplyLogo from "../assets/hdsupplyLogo .png";
@@ -229,7 +230,7 @@ const Home = () => {
         </div>
         <div className="mt-12 max-w-6xl mx-auto">
           <img
-            src="/src/assets/nextProjectimg.png"
+            src={nextProjectimg}
             alt="Upcoming projects visuals"
             className="w-full h-auto rounded shadow-md object-cover"
           />
