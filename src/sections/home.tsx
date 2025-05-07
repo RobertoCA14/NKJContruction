@@ -5,7 +5,6 @@ import portada3 from "../assets/portada3.png";
 import edificio170 from "../assets/edificio170.png";
 import edificio55 from "../assets/edificio55.png";
 import edifici711 from "../assets/edifici711.png";
-import nextProjectimg from "../assets/nextProjectimg.png";
 import repeatClient1 from "../assets/repeatClient1.png";
 import repeatClient2 from "../assets/repeatClient2.png";
 import gothamLogo from "../assets/gothamLogo .png";
