@@ -157,46 +157,41 @@ const Home = () => {
         </div>
       </section>
       {/* UPCOMING PROJECTS  */}
-      <section className="bg-white text-center py-16 px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8">
-          UPCOMING PROJECTS
-        </h2>
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto text-left">
-          <div>
-            <h3 className="text-red-800 font-bold">
-              8619 Bergenline Avenue, North Bergen, NJ
-            </h3>
-            <p className="italic">Expected Start: First Quarter of 2024</p>
-            <p>Square Footage: 260,000</p>
-            <p>Contract Value: $2.1 Million</p>
-            <p>Developer/ GC: Del-Sano Contracting Group</p>
+      <section className="bg-gray-100 py-16 px-4" id="upcoming-projects">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            UPCOMING PROJECTS
+          </h2>
+
+          {/* Grid de texto de proyectos */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center  mb-12">
+            <div>
+              <h3 className="text-red-800 font-bold">
+                8619 Bergenline Avenue, North Bergen, NJ
+              </h3>
+              <p className="italic">Expected Start: First Quarter of 2024</p>
+              <p>Square Footage: 260,000</p>
+              <p>Contract Value: $2.1 Million</p>
+              <p>Developer/ GC: Del-Sano Contracting Group</p>
+            </div>
           </div>
-          <section className="w-full flex flex-col md:flex-row">
-            {/* Imagen izquierda */}
+
+          {/* Imágenes lado a lado */}
+          <div className="flex flex-col md:flex-row">
             <img
               src={ladrilloedificiouPcomin}
-              alt="Ladrillo"
-              className="w-full md:w-1/2 object-cover h-[300px]"
+              alt="Edificio ladrillo"
+              className="w-full md:w-1/2 h-[200px] object-cover"
             />
-
-            {/* Imagen derecha */}
             <img
               src={edificiosUpcomin}
-              alt="Ciudad"
-              className="w-full md:w-1/2 object-cover h-[300px]"
+              alt="Skyline ciudad"
+              className="w-full md:w-1/2 h-[200px] object-cover"
             />
-          </section>
-          {/* <div>
-            <h3 className="text-red-800 font-bold">
-              38 Jackson Street, Hoboken, NJ
-            </h3>
-            <p className="italic">Expected Start: Second Quarter of 2024</p>
-            <p>Square Footage: 500,000</p>
-            <p>Contract Value: $2.2 Million</p>
-            <p>Developer/ GC: Molfetta Corp.</p>
-          </div> */}
+          </div>
         </div>
       </section>
+
       {/* Proyectos recientes prueba */}
       {/* <section id="projects" className="py-16 bg-gray-200">
         <h2 className="text-3xl font-bold mb-8">Proyectos Recientes</h2>
