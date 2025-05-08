@@ -1,5 +1,7 @@
-import HeroCarousel from "./HeroCarousel";
-import ZoomableImage from "../sections/ZoomableImage"; // Ajusta la ruta según tu estructura
+import HeroCarousel from "../components/HeroCarousel";
+import ServicesSection from "../sections/ServicesSection";
+import Navbar from "../components/navbar";
+import ZoomableImage from "../components/ZoomableImage"; // Ajusta la ruta según tu estructura
 import logo from "../assets/logo.png";
 import portada3 from "../assets/portada3.png";
 import edificio170 from "../assets/edificio170.png";
@@ -7,91 +9,17 @@ import edificio55 from "../assets/edificio55.png";
 import edifici711 from "../assets/edifici711.png";
 import repeatClient1 from "../assets/repeatClient1.png";
 import repeatClient2 from "../assets/repeatClient2.png";
-import nextProjectimg from "../assets/nextProjectimg.png";
 import gothamLogo from "../assets/gothamLogo.png";
 import beldenLogo from "../assets/beldenLogo.png";
 import hdsupplyLogo from "../assets/hdsupplyLogo.png";
 import FondoProjectListimg from "../assets/FondoProjectListimg.png";
 import bgContact from "../assets/bgcontact.jpeg";
-import { useState } from "react";
-import ServicesSection from "./ServicesSection"; // Ajusta el path
-
+import ladrilloedificiouPcomin from "../assets/ladrilloedificiouPcomin.png";
+import edificiosUpcomin from "../assets/edificiosUpcomin.png";
 const Home = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
-    <div className="text-center bg-gray-100 min-h-screen">
-      <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
-        <div className="max-w-[1280px] mx-auto flex justify-between items-center py-4 px-6">
-          {/* Logo + Texto */}
-          <a
-            href="#hero"
-            className="flex items-center space-x-2 hover:opacity-80 transition"
-          >
-            <img src={logo} alt="Logo" className="h-12 object-contain" />
-            <span className="text-red-800 text-xl font-bold whitespace-nowrap">
-              NKJConstruction
-            </span>
-          </a>
-
-          {/* Botón menú móvil */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden focus:outline-none"
-          >
-            <svg
-              className="w-6 h-6 text-gray-800"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-
-          {/* Menú horizontal solo en pantallas grandes */}
-          <nav className="hidden md:flex space-x-6 text-gray-800 font-medium">
-            <a href="#hero" className="hover:text-red-600">
-              Home
-            </a>
-            <a href="#projects" className="hover:text-red-600">
-              Project
-            </a>
-            <a href="#services" className="hover:text-red-600">
-              Services
-            </a>
-            <a href="#contact" className="hover:text-red-600">
-              Contact
-            </a>
-          </nav>
-        </div>
-
-        {/* Menú móvil desplegable */}
-        {menuOpen && (
-          <div className="md:hidden px-6 pb-4">
-            <nav className="flex flex-col space-y-3 text-gray-800 font-medium">
-              <a href="#hero" className="hover:text-red-600">
-                Home
-              </a>
-              <a href="#projects" className="hover:text-red-600">
-                Project
-              </a>
-              <a href="#services" className="hover:text-red-600">
-                Services
-              </a>
-              <a href="#contact" className="hover:text-red-600">
-                Contact
-              </a>
-            </nav>
-          </div>
-        )}
-      </header>
-
+    <div className=" text-center bg-gray-100 min-h-screen">
+      <Navbar />
       <HeroCarousel />
       {/*Parrafo Sobre la empresa */}
       <section className="bg-white text-center px-6 py-16">
@@ -217,6 +145,7 @@ const Home = () => {
             "The River Club (Building 1 & 2), Bogota, NJ",
             "Autozone in 27-02 Broadway, Fair Lawn, NJ",
             "Little Falls, NJ",
+            "38 Jackson Street, Hoboken, NJ",
           ].map((project, i) => (
             <div
               key={i}
@@ -228,36 +157,38 @@ const Home = () => {
         </div>
       </section>
       {/* UPCOMING PROJECTS  */}
-      <section className="bg-white text-center py-16 px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8">
-          UPCOMING PROJECTS
-        </h2>
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto text-left">
-          <div>
-            <h3 className="text-red-800 font-bold">
-              8619 Bergenline Avenue, North Bergen, NJ
-            </h3>
-            <p className="italic">Expected Start: First Quarter of 2024</p>
-            <p>Square Footage: 260,000</p>
-            <p>Contract Value: $2.1 Million</p>
-            <p>Developer/ GC: Del-Sano Contracting Group</p>
+      <section className="bg-gray-100 py-16 px-4" id="upcoming-projects">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            UPCOMING PROJECTS
+          </h2>
+
+          {/* Grid de texto de proyectos */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center  mb-12">
+            <div>
+              <h3 className="text-red-800 font-bold">
+                8619 Bergenline Avenue, North Bergen, NJ
+              </h3>
+              <p className="italic">Expected Start: First Quarter of 2024</p>
+              <p>Square Footage: 260,000</p>
+              <p>Contract Value: $2.1 Million</p>
+              <p>Developer/ GC: Del-Sano Contracting Group</p>
+            </div>
           </div>
-          <div>
-            <h3 className="text-red-800 font-bold">
-              38 Jackson Street, Hoboken, NJ
-            </h3>
-            <p className="italic">Expected Start: Second Quarter of 2024</p>
-            <p>Square Footage: 500,000</p>
-            <p>Contract Value: $2.2 Million</p>
-            <p>Developer/ GC: Molfetta Corp.</p>
+
+          {/* Imágenes lado a lado */}
+          <div className="flex flex-col md:flex-row">
+            <img
+              src={ladrilloedificiouPcomin}
+              alt="Edificio ladrillo"
+              className="w-full md:w-1/2 h-[200px] object-cover"
+            />
+            <img
+              src={edificiosUpcomin}
+              alt="Skyline ciudad"
+              className="w-full md:w-1/2 h-[200px] object-cover"
+            />
           </div>
-        </div>
-        <div className="mt-12 max-w-6xl mx-auto">
-          <img
-            src={nextProjectimg}
-            alt="Upcoming projects visuals"
-            className="w-full h-auto rounded shadow-md object-cover"
-          />
         </div>
       </section>
       {/* Proyectos recientes prueba */}
@@ -276,7 +207,7 @@ const Home = () => {
         </div>
       </section> */}
       {/* REPEAT CLIENTS*/}
-      <section  className="text-white text-center py-16 px-4">
+      <section className="text-white text-center py-16 px-4">
         <div className="max-w-6xl mx-auto bg-gray-600 py-10 px-6 rounded">
           <h2 className="text-3xl font-bold mb-12">REPEAT CLIENTS</h2>
           <div className="flex flex-col md:flex-row justify-center items-center gap-8">
