@@ -1,5 +1,6 @@
-import HeroCarousel from "./HeroCarousel";
-import ZoomableImage from "../sections/ZoomableImage"; // Ajusta la ruta según tu estructura
+import HeroCarousel from "../components/HeroCarousel";
+import Navbar from "../components/navbar";
+import ZoomableImage from "../components/ZoomableImage"; // Ajusta la ruta según tu estructura
 import logo from "../assets/logo.png";
 import portada3 from "../assets/portada3.png";
 import edificio170 from "../assets/edificio170.png";
@@ -8,66 +9,17 @@ import edifici711 from "../assets/edifici711.png";
 import nextProjectimg from "../assets/nextProjectimg.png";
 import repeatClient1 from "../assets/repeatClient1.png";
 import repeatClient2 from "../assets/repeatClient2.png";
-import gothamLogo from "../assets/gothamLogo .png";
-import beldenLogo from "../assets/beldenLogo .png";
-import hdsupplyLogo from "../assets/hdsupplyLogo .png";
+import gothamLogo from "../assets/gothamLogo.png";
+import beldenLogo from "../assets/beldenLogo.png";
+import hdsupplyLogo from "../assets/hdsupplyLogo.png";
 import FondoProjectListimg from "../assets/FondoProjectListimg.png";
 import bgContact from "../assets/bgcontact.jpeg";
+import ladrilloedificiouPcomin from "../assets/ladrilloedificiouPcomin.png";
+import edificiosUpcomin from "../assets/edificiosUpcomin.png";
 const Home = () => {
   return (
     <div className=" text-center bg-gray-100 min-h-screen">
-      <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
-        <div className="max-w-[1280px] mx-auto flex justify-between items-center py-4 px-6">
-          {/* Logo + Texto juntos */}
-          <a
-            href="#hero"
-            className="flex items-center space-x-2 hover:opacity-80 transition"
-          >
-            <img src={logo} alt="Logo" className="h-20 object-contain" />
-            <span className="text-red-800 text-2xl font-bold">
-              NKJConstruction
-            </span>
-          </a>
-
-          {/* Menú de navegación */}
-          <nav>
-            <ul className="flex space-x-6 text-gray-800 font-medium">
-              <li>
-                <a
-                  href="#hero"
-                  className="hover:text-red-600 transition-colors"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#projects"
-                  className="hover:text-red-600 transition-colors"
-                >
-                  Project
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#services"
-                  className="hover:text-red-600 transition-colors"
-                >
-                  Services
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#contact"
-                  className="hover:text-red-600 transition-colors"
-                >
-                  Contacts
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+      <Navbar />
       <HeroCarousel />
       {/*Parrafo Sobre la empresa */}
       <section className="bg-white text-center px-6 py-16">
@@ -193,6 +145,7 @@ const Home = () => {
             "The River Club (Building 1 & 2), Bogota, NJ",
             "Autozone in 27-02 Broadway, Fair Lawn, NJ",
             "Little Falls, NJ",
+            "38 Jackson Street, Hoboken, NJ",
           ].map((project, i) => (
             <div
               key={i}
@@ -218,7 +171,7 @@ const Home = () => {
             <p>Contract Value: $2.1 Million</p>
             <p>Developer/ GC: Del-Sano Contracting Group</p>
           </div>
-          <div>
+          {/* <div>
             <h3 className="text-red-800 font-bold">
               38 Jackson Street, Hoboken, NJ
             </h3>
@@ -226,14 +179,7 @@ const Home = () => {
             <p>Square Footage: 500,000</p>
             <p>Contract Value: $2.2 Million</p>
             <p>Developer/ GC: Molfetta Corp.</p>
-          </div>
-        </div>
-        <div className="mt-12 max-w-6xl mx-auto">
-          <img
-            src="/src/assets/nextProjectimg.png"
-            alt="Upcoming projects visuals"
-            className="w-full h-auto rounded shadow-md object-cover"
-          />
+          </div> */}
         </div>
       </section>
       {/* Proyectos recientes prueba */}
