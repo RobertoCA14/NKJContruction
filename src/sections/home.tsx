@@ -4,6 +4,7 @@ import Navbar from "../components/navbar";
 import ZoomableImage from "../components/ZoomableImage"; // Ajusta la ruta según tu estructura
 import logo from "../assets/logo.png";
 import portada3 from "../assets/portada3.png";
+import ladrillosapred from "../assets/ladrillosapred.png";
 import edificio170 from "../assets/edificio170.png";
 import edificio55 from "../assets/edificio55.png";
 import edifici711 from "../assets/edifici711.png";
@@ -12,10 +13,10 @@ import repeatClient2 from "../assets/repeatClient2.png";
 import gothamLogo from "../assets/gothamLogo.png";
 import beldenLogo from "../assets/beldenLogo.png";
 import hdsupplyLogo from "../assets/hdsupplyLogo.png";
-import FondoProjectListimg from "../assets/FondoProjectListimg.png";
 import bgContact from "../assets/bgcontact.jpeg";
 import ladrilloedificiouPcomin from "../assets/ladrilloedificiouPcomin.png";
 import edificiosUpcomin from "../assets/edificiosUpcomin.png";
+
 const Home = () => {
   return (
     <div className=" text-center bg-gray-100 min-h-screen">
@@ -23,10 +24,10 @@ const Home = () => {
       <HeroCarousel />
       {/*Parrafo Sobre la empresa */}
       <section className="bg-white text-center px-6 py-16">
-        <img
+        <ZoomableImage
           src={logo}
           alt="Logo"
-          className="mx-auto mb-6 w-32 h-32 object-contain"
+          className="mx-auto mb-6 w-56 h-56 object-contain"
         />
 
         {/* Título principal más grande */}
@@ -72,7 +73,7 @@ const Home = () => {
             help.
           </p>
           <p className="text-sm leading-relaxed text-gray-300">
-            At NKJ Construction, our portfolio stands as a testament to our
+            At NKJ Construction LLC, our portfolio stands as a testament to our
             unwavering commitment to excellence in masonry construction. Nestled
             in the dynamic landscape of New Jersey, we have left an indelible
             mark with medium to large-size projects in high-rise residential
@@ -80,6 +81,8 @@ const Home = () => {
           </p>
         </div>
       </section>
+      {/* Nuestros servicios   */}
+      <ServicesSection />
       {/* Proyectos recientes */}
       <section id="projects" className="bg-gray-100 py-16 px-4">
         <div className="max-w-6xl mx-auto">
@@ -90,19 +93,19 @@ const Home = () => {
             <ZoomableImage
               src={edificio170}
               alt="170 Erie"
-              title="170 Erie St."
+              title="170 Erie Street."
               subtitle="Jersey City, NJ 07302"
             />
             <ZoomableImage
               src={edificio55}
               alt="55 Jordan"
-              title="55 Jordan Ave."
+              title="55 Jordan Avenue."
               subtitle="Jersey City, NJ 07306"
             />
             <ZoomableImage
               src={edifici711}
               alt="711 Montgomery"
-              title="711 Montgomery St."
+              title="711 Montgomery Street."
               subtitle="Jersey City, NJ 07306"
             />
           </div>
@@ -112,7 +115,7 @@ const Home = () => {
       {/* Lista de Proyectos  */}
       <section
         className="bg-cover bg-center py-16 px-4 text-white"
-        style={{ backgroundImage: `url(${FondoProjectListimg})` }}
+        style={{ backgroundImage: `url(${ladrillosapred})` }}
       >
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 bg-red-800 px-6 py-2 inline-block">
           PROJECT LIST
@@ -174,6 +177,15 @@ const Home = () => {
               <p>Contract Value: $2.1 Million</p>
               <p>Developer/ GC: Del-Sano Contracting Group</p>
             </div>
+            <div>
+              <h3 className="text-red-800 font-bold">
+                130 Avenue F, Bayonne, NJ 07002
+              </h3>
+              <p className="italic">Expected Start: First Quarter of 2024</p>
+              <p>Square Footage: 260,000</p>
+              <p>Contract Value: $2.1 Million</p>
+              <p>Developer/ GC: Del-Sano Contracting Group</p>
+            </div>
           </div>
 
           {/* Imágenes lado a lado */}
@@ -209,7 +221,7 @@ const Home = () => {
       {/* REPEAT CLIENTS*/}
       <section className="text-white text-center py-16 px-4">
         <div className="max-w-6xl mx-auto bg-gray-600 py-10 px-6 rounded">
-          <h2 className="text-3xl font-bold mb-12">REPEAT CLIENTS</h2>
+          <h2 className="text-3xl font-bold mb-12">LOYAL CLIENTS</h2>
           <div className="flex flex-col md:flex-row justify-center items-center gap-8">
             {/* Cliente 1 */}
             <div className="relative">
@@ -230,13 +242,12 @@ const Home = () => {
             </div>
           </div>
 
-          <button className="mt-8 bg-white text-gray-900 px-6 py-2 border border-gray-400 shadow">
+          {/* <button className="mt-8 bg-white text-gray-900 px-6 py-2 border border-gray-400 shadow">
             Additional clients provided upon request
-          </button>
+          </button> */}
         </div>
       </section>
-      {/* Nuestros servicios   */}
-      <ServicesSection />
+
       {/* SUPPLIER REFERENCES */}
       <section className="bg-white text-center py-16 px-6">
         <div className="max-w-6xl mx-auto">
@@ -267,9 +278,9 @@ const Home = () => {
               <p className="text-sm">Ivan.GonzalezAguirre@whitecap.com</p>
             </div>
           </div>
-          <button className="mt-12 bg-gray-200 px-6 py-2 shadow text-sm">
+          {/* <button className="mt-12 bg-gray-200 px-6 py-2 shadow text-sm">
             Additional suppliers provided upon request
-          </button>
+          </button> */}
         </div>
         <div className=" max-w-6xl mx-auto bg-red-800 h-16 w-full"></div>
       </section>
@@ -302,46 +313,59 @@ const Home = () => {
       </section>
       {/* Contactanos */}
       <section
-        className="relative bg-cover bg-center text-white min-h-[40vh] px-6 flex items-center"
+        className="relative bg-cover bg-center text-white min-h-[40vh] px-6 pt-28 md:pt-0 flex items-center"
         style={{ backgroundImage: `url(${bgContact})` }}
         id="contact"
       >
         {/* Capa oscura encima de la imagen */}
         <div className="absolute inset-0 bg-black/60"></div>
 
-        {/* Logo en esquina superior izquierda */}
+        {/* Logo esquina superior solo visible en pantallas md+ */}
         <img
           src={logo}
           alt="NKJ Construction Logo"
-          className="absolute top-6 left-6 w-28 h-auto z-20"
+          className="hidden md:block absolute top-6 left-6 w-28 h-auto z-20"
         />
 
         {/* Contenido principal */}
-        <div className="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-3 gap-8 items-start py-12">
-          {/* Columna 1 */}
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-2">Let's talk</h2>
-            <p className="font-semibold">NKJ CONSTRUCTION, LLC</p>
-            <p>Bergenfield, New Jersey</p>
+        <div className="relative z-10 max-w-6xl mx-auto w-full">
+          {/* Logo centrado solo visible en móviles */}
+          <div className="md:hidden text-center mb-6">
+            <img
+              src={logo}
+              alt="NKJ Construction Logo"
+              className="mx-auto w-20 h-auto"
+            />
           </div>
 
-          {/* Columna 2 */}
-          <div>
-            <p>
-              <strong>Tel.</strong> 1 (917) 373-6114
-            </p>
-            <p>
-              <strong>Email:</strong> nigel@nkjconstruction.com
-            </p>
-            <p>
-              <strong>Instagram:</strong> @nkjconstructionllc
-            </p>
-          </div>
+          <div className="grid md:grid-cols-3 gap-8 items-start pb-12">
+            {/* Columna 1 */}
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-2">
+                Let's talk
+              </h2>
+              <p className="font-semibold">NKJ CONSTRUCTION, LLC</p>
+              <p>Bergenfield, New Jersey</p>
+            </div>
 
-          {/* Columna 3 */}
-          <div>
-            <p>Your vision, our expertise —</p>
-            <p>let’s build together!</p>
+            {/* Columna 2 */}
+            <div>
+              <p>
+                <strong>Tel.</strong> 1 (917) 373-6114
+              </p>
+              <p>
+                <strong>Email:</strong> nigel@nkjconstruction.com
+              </p>
+              <p>
+                <strong>Instagram:</strong> @nkjconstructionllc
+              </p>
+            </div>
+
+            {/* Columna 3 */}
+            <div>
+              <p>Your vision, our expertise —</p>
+              <p>let’s build together!</p>
+            </div>
           </div>
         </div>
       </section>
