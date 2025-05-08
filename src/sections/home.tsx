@@ -1,4 +1,5 @@
 import HeroCarousel from "../components/HeroCarousel";
+import ServicesSection from "../sections/ServicesSection";
 import Navbar from "../components/navbar";
 import ZoomableImage from "../components/ZoomableImage"; // Ajusta la ruta según tu estructura
 import logo from "../assets/logo.png";
@@ -191,7 +192,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
       {/* Proyectos recientes prueba */}
       {/* <section id="projects" className="py-16 bg-gray-200">
         <h2 className="text-3xl font-bold mb-8">Proyectos Recientes</h2>
@@ -237,18 +237,7 @@ const Home = () => {
         </div>
       </section>
       {/* Nuestros servicios   */}
-      <section id="services" className="py-16">
-        <h2 className="text-3xl font-bold mb-8">Nuestros Servicios</h2>
-        <div className="grid md:grid-cols-3 gap-6 px-6">
-          <div className="bg-white shadow-md p-6 rounded">
-            Construcción General
-          </div>
-          <div className="bg-white shadow-md p-6 rounded">Remodelaciones</div>
-          <div className="bg-white shadow-md p-6 rounded">
-            Supervisión de Proyectos
-          </div>
-        </div>
-      </section>
+      <ServicesSection />
       {/* SUPPLIER REFERENCES */}
       <section className="bg-white text-center py-16 px-6">
         <div className="max-w-6xl mx-auto">

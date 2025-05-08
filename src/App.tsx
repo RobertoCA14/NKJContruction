@@ -2,7 +2,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./sections/home";
-import Services from "./sections/services";
+import Services from "./sections/ServicesSection";
 import Projects from "./sections/projects";
 import Contact from "./sections/contact";
 
