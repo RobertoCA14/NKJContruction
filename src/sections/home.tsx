@@ -171,6 +171,21 @@ const Home = () => {
             <p>Contract Value: $2.1 Million</p>
             <p>Developer/ GC: Del-Sano Contracting Group</p>
           </div>
+          <section className="w-full flex flex-col md:flex-row">
+            {/* Imagen izquierda */}
+            <img
+              src={ladrilloedificiouPcomin}
+              alt="Ladrillo"
+              className="w-full md:w-1/2 object-cover h-[300px]"
+            />
+
+            {/* Imagen derecha */}
+            <img
+              src={edificiosUpcomin}
+              alt="Ciudad"
+              className="w-full md:w-1/2 object-cover h-[300px]"
+            />
+          </section>
           {/* <div>
             <h3 className="text-red-800 font-bold">
               38 Jackson Street, Hoboken, NJ
