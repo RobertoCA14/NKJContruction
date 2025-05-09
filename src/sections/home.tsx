@@ -1,4 +1,5 @@
 import HeroCarousel from "../components/HeroCarousel";
+import ContactSection from "./ContactSection";
 import ServicesSection from "../sections/ServicesSection";
 import Navbar from "../components/navbar";
 import ZoomableImage from "../components/ZoomableImage"; // Ajusta la ruta según tu estructura
@@ -13,7 +14,6 @@ import repeatClient2 from "../assets/repeatClient2.png";
 import gothamLogo from "../assets/gothamLogo.png";
 import beldenLogo from "../assets/beldenLogo.png";
 import hdsupplyLogo from "../assets/hdsupplyLogo.png";
-import bgContact from "../assets/bgcontact.jpeg";
 import ladrilloedificiouPcomin from "../assets/ladrilloedificiouPcomin.png";
 import edificiosUpcomin from "../assets/edificiosUpcomin.png";
 
@@ -312,63 +312,7 @@ const Home = () => {
         </div>
       </section>
       {/* Contactanos */}
-      <section
-        className="relative bg-cover bg-center text-white min-h-[40vh] px-6 pt-28 md:pt-0 flex items-center"
-        style={{ backgroundImage: `url(${bgContact})` }}
-        id="contact"
-      >
-        {/* Capa oscura encima de la imagen */}
-        <div className="absolute inset-0 bg-black/60"></div>
-
-        {/* Logo esquina superior solo visible en pantallas md+ */}
-        <img
-          src={logo}
-          alt="NKJ Construction Logo"
-          className="hidden md:block absolute top-6 left-6 w-28 h-auto z-20"
-        />
-
-        {/* Contenido principal */}
-        <div className="relative z-10 max-w-6xl mx-auto w-full">
-          {/* Logo centrado solo visible en móviles */}
-          <div className="md:hidden text-center mb-6">
-            <img
-              src={logo}
-              alt="NKJ Construction Logo"
-              className="mx-auto w-20 h-auto"
-            />
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 items-start pb-12">
-            {/* Columna 1 */}
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-2">
-                Let's talk
-              </h2>
-              <p className="font-semibold">NKJ CONSTRUCTION, LLC</p>
-              <p>Bergenfield, New Jersey</p>
-            </div>
-
-            {/* Columna 2 */}
-            <div>
-              <p>
-                <strong>Tel.</strong> 1 (917) 373-6114
-              </p>
-              <p>
-                <strong>Email:</strong> nigel@nkjconstruction.com
-              </p>
-              <p>
-                <strong>Instagram:</strong> @nkjconstructionllc
-              </p>
-            </div>
-
-            {/* Columna 3 */}
-            <div>
-              <p>Your vision, our expertise —</p>
-              <p>let’s build together!</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ContactSection />
     </div>
   );
 };
