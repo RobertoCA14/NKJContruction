@@ -44,7 +44,7 @@ const ContactSection = () => {
             <p className="flex items-center gap-2">
               <FaInstagram className="text-red-500" />
               <a
-                href="https://www.instagram.com/nkjconstructionllc"
+                href="https://www.instagram.com/nkjconstruction?igsh=MWs3ZHR4YTh4MGJmcQ=="
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline"
