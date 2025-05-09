@@ -3,10 +3,10 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import portada4 from "../assets/portada4.png";
 import portada3 from "../assets/portada3.png";
-import ladrillosapred from "../assets/ladrillosapred.png";
+import cmuImg from "../assets/cmuImg.png";
 
 const HeroCarousel: React.FC = () => {
-  const images = [portada4, ladrillosapred, portada3];
+  const images = [portada4, cmuImg, portada3];
 
   return (
     <div className="relative w-full h-[95vh] overflow-hidden" id="hero">

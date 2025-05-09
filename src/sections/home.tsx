@@ -5,7 +5,7 @@ import Navbar from "../components/navbar";
 import ZoomableImage from "../components/ZoomableImage"; // Ajusta la ruta según tu estructura
 import logo from "../assets/logo.png";
 import portada3 from "../assets/portada3.png";
-import ladrillosapred from "../assets/ladrillosapred.png";
+import cmuImg from "../assets/cmuImg.png";
 import edificio170 from "../assets/edificio170.png";
 import edificio55 from "../assets/edificio55.png";
 import edifici711 from "../assets/edifici711.png";
@@ -119,7 +119,7 @@ const Home = () => {
       {/* Lista de Proyectos  */}
       <section
         className="bg-cover bg-center py-16 px-4 text-white"
-        style={{ backgroundImage: `url(${ladrillosapred})` }}
+        style={{ backgroundImage: `url(${cmuImg})` }}
       >
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 bg-red-800 px-6 py-2 inline-block">
           PROJECT LIST

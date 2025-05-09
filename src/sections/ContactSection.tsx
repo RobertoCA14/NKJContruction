@@ -1,6 +1,6 @@
 import { FaInstagram, FaEnvelope } from "react-icons/fa";
 import logo from "../assets/logo.png";
-import bgContact from "../assets/bgcontact.jpeg";
+import bgContact from "../assets/bgcontact.png";
 
 const ContactSection = () => {
   return (
