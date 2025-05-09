@@ -5,6 +5,7 @@ interface ZoomableImageProps {
   alt?: string;
   title?: string;
   subtitle?: string;
+  className?: string; // 👈 añadimos className opcional
 }
 
 const ZoomableImage: React.FC<ZoomableImageProps> = ({
@@ -12,6 +13,7 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({
   alt,
   title,
   subtitle,
+  className = "", // 👈 valor por defecto vacío
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -22,8 +24,9 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({
           src={src}
           alt={alt}
           onClick={() => setIsOpen(true)}
-          className="w-full h-[320px] object-cover rounded shadow-md cursor-zoom-in transition hover:scale-105"
+          className={`w-[350px] h-[300px] object-cover rounded shadow-md cursor-zoom-in transition hover:scale-105 ${className}`}
         />
+
         {title && <p className="mt-4 font-bold text-red-700">{title}</p>}
         {subtitle && <p className="text-sm">{subtitle}</p>}
       </div>

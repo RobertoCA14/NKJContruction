@@ -24,11 +24,14 @@ const Home = () => {
       <HeroCarousel />
       {/*Parrafo Sobre la empresa */}
       <section className="bg-white text-center px-6 py-16">
-        <ZoomableImage
-          src={logo}
-          alt="Logo"
-          className="mx-auto mb-6 w-56 h-56 object-contain"
-        />
+        {/* Logo centrado y de tamaño adecuado */}
+        <div className="flex justify-center mb-6">
+          <ZoomableImage
+            src={logo}
+            alt="Logo"
+            className="w-40 md:w-52 h-auto object-contain"
+          />
+        </div>
 
         {/* Título principal más grande */}
         <h2 className="text-3xl md:text-5xl font-bold">
@@ -52,6 +55,7 @@ const Home = () => {
           enduring legacy of impeccable masonry construction.
         </p>
       </section>
+
       <div className="w-full h-16 bg-[#991B1B]"></div>
       {/* Imagen a la izquierda */}
       <section className="grid md:grid-cols-2 bg-white">
