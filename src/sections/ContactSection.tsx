@@ -38,29 +38,27 @@ const ContactSection = () => {
           </div>
 
           {/* Columna 2 con íconos más grandes y clicables */}
-          <div className="space-y-3 text-lg">
+          {/* Columna 2 */}
+          <div className="space-y-2">
+            {/* Instagram */}
             <a
               href="https://www.instagram.com/nkjconstruction?igsh=MWs3ZHR4YTh4MGJmcQ=="
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 hover:underline"
+              className="flex items-center gap-2 hover:underline text-lg"
             >
-              <FaInstagram className="text-red-500 text-2xl" />
+              <FaInstagram className="text-red-500 text-xl" />
               @nkjconstructionllc
             </a>
+
+            {/* Gmail */}
             <a
               href="mailto:nigel@nkjconstruction.com"
-              className="flex items-center gap-3 hover:underline"
+              className="flex items-center gap-2 hover:underline text-lg"
             >
-              <FaEnvelope className="text-red-500 text-2xl" />
+              <FaEnvelope className="text-red-500 text-xl" />
               nigel@nkjconstruction.com
             </a>
-          </div>
-
-          {/* Columna 3 */}
-          <div>
-            <p>Your vision, our expertise —</p>
-            <p>Let’s build together!</p>
           </div>
         </div>
       </div>
