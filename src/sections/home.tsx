@@ -16,6 +16,10 @@ import beldenLogo from "../assets/beldenLogo.png";
 import hdsupplyLogo from "../assets/hdsupplyLogo.png";
 import ladrilloedificiouPcomin from "../assets/ladrilloedificiouPcomin.png";
 import edificiosUpcomin from "../assets/edificiosUpcomin.png";
+import cliente from "../assets/cliente.png";
+import safety from "../assets/safety.png";
+import proyectos from "../assets/proyectos.jpg";
+import { motion } from "framer-motion";
 
 const Home = () => {
   return (
@@ -290,31 +294,87 @@ const Home = () => {
       </section>
       {/* Línea roja separadora */}
       {/* Why Us */}
-      <section className="py-12 px-4 text-center bg-white">
-        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-left max-w-6xl mx-auto">
-          Why Us
+      <section className="py-16 px-4 bg-white text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-900">
+          Why Choose Us
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {/* Año */}
-          <div className="bg-gray-100 py-12 px-6 shadow-sm flex flex-col items-center justify-center h-72">
-            <div className="text-5xl mb-4">🧳</div>
-            <p className="text-red-700 font-semibold">Year Established</p>
-            <p className="text-2xl font-bold mt-2">2018</p>
-          </div>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative rounded-lg shadow text-white p-6 flex flex-col items-center justify-center h-64 bg-cover bg-center"
+            style={{ backgroundImage: `url(${edifici711})` }}
+          >
+            <div className="bg-black/60 absolute inset-0 rounded-lg"></div>
+            <div className="relative z-10">
+              <p className="text-xl font-semibold text-red-300">Since</p>
+              <p className="text-3xl font-bold">2018</p>
+              <p className="text-sm mt-1">Years of experience</p>
+            </div>
+          </motion.div>
+
           {/* Clientes */}
-          <div className="bg-gray-100 py-12 px-6 shadow-sm flex flex-col items-center justify-center h-72">
-            <div className="text-5xl mb-4">👤</div>
-            <p className="text-red-700 font-semibold">Clients</p>
-            <p className="text-2xl font-bold mt-2">20</p>
-          </div>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="relative rounded-lg shadow text-white p-6 flex flex-col items-center justify-center h-64 bg-cover bg-center"
+            style={{ backgroundImage: `url(${cliente})` }}
+          >
+            <div className="bg-black/60 absolute inset-0 rounded-lg"></div>
+            <div className="relative z-10">
+              <p className="text-xl font-semibold text-red-300">Clients</p>
+              <p className="text-3xl font-bold">20+</p>
+              <p className="text-sm mt-1">Trusted partnerships</p>
+            </div>
+          </motion.div>
+
           {/* Proyectos */}
-          <div className="bg-gray-100 py-12 px-6 shadow-sm flex flex-col items-center justify-center h-72">
-            <div className="text-5xl mb-4">🏠</div>
-            <p className="text-red-700 font-semibold">Projects</p>
-            <p className="text-2xl font-bold mt-2">22</p>
-          </div>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative rounded-lg shadow text-white p-6 flex flex-col items-center justify-center h-64 bg-cover bg-center"
+            style={{ backgroundImage: `url(${proyectos})` }}
+          >
+            <div className="bg-black/60 absolute inset-0 rounded-lg"></div>
+            <div className="relative z-10">
+              <p className="text-xl font-semibold text-red-300">Projects</p>
+              <p className="text-3xl font-bold">22+</p>
+              <p className="text-sm mt-1">Completed works</p>
+            </div>
+          </motion.div>
+
+          {/* Seguridad */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="relative rounded-lg shadow text-white p-6 flex flex-col items-center justify-center h-64 bg-cover bg-center"
+            style={{ backgroundImage: `url(${safety})` }}
+          >
+            <div className="bg-black/60 absolute inset-0 rounded-lg"></div>
+            <div className="relative z-10">
+              <p className="text-xl font-semibold text-red-300">
+                Safety & Quality
+              </p>
+              <p className="text-3xl font-bold">100%</p>
+              <p className="text-sm mt-1">Satisfaction guaranteed</p>
+            </div>
+          </motion.div>
         </div>
       </section>
+
       {/* Contactanos */}
       <ContactSection />
     </div>
