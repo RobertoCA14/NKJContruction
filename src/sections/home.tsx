@@ -29,7 +29,7 @@ const Home = () => {
           <ZoomableImage
             src={logo}
             alt="Logo"
-            className="w-40 md:w-52 h-auto object-contain"
+            className="w-24 sm:w-32 md:w-44 lg:w-56 xl:w-64 h-auto object-contain bg-white rounded shadow-none"
           />
         </div>
 

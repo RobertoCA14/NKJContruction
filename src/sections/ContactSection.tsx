@@ -19,7 +19,6 @@ const ContactSection = () => {
         className="hidden md:block absolute top-4 left-4 w-20 h-auto z-20"
       />
 
-      {/* Contenido principal */}
       <div className="relative z-10 max-w-6xl mx-auto w-full">
         {/* Logo centrado en móviles */}
         <div className="md:hidden text-center mb-6">
@@ -30,7 +29,6 @@ const ContactSection = () => {
           />
         </div>
 
-        {/* Grid con padding top para evitar colisión */}
         <div className="grid md:grid-cols-3 gap-8 items-start pb-12 pt-4 md:pt-0">
           {/* Columna 1 */}
           <div className="pt-6 md:pt-0">
@@ -39,28 +37,24 @@ const ContactSection = () => {
             <p>Bergenfield, New Jersey</p>
           </div>
 
-          {/* Columna 2 */}
-          <div className="space-y-2">
-            <p className="flex items-center gap-2">
-              <FaInstagram className="text-red-500" />
-              <a
-                href="https://www.instagram.com/nkjconstruction?igsh=MWs3ZHR4YTh4MGJmcQ=="
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                @nkjconstructionllc
-              </a>
-            </p>
-            <p className="flex items-center gap-2">
-              <FaEnvelope className="text-red-500" />
-              <a
-                href="mailto:nigel@nkjconstruction.com"
-                className="hover:underline"
-              >
-                nigel@nkjconstruction.com
-              </a>
-            </p>
+          {/* Columna 2 con íconos más grandes y clicables */}
+          <div className="space-y-3 text-lg">
+            <a
+              href="https://www.instagram.com/nkjconstruction?igsh=MWs3ZHR4YTh4MGJmcQ=="
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 hover:underline"
+            >
+              <FaInstagram className="text-red-500 text-2xl" />
+              @nkjconstructionllc
+            </a>
+            <a
+              href="mailto:nigel@nkjconstruction.com"
+              className="flex items-center gap-3 hover:underline"
+            >
+              <FaEnvelope className="text-red-500 text-2xl" />
+              nigel@nkjconstruction.com
+            </a>
           </div>
 
           {/* Columna 3 */}
