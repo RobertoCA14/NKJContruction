@@ -1,48 +1,57 @@
+import cmuImg from "../assets/cmuImg.png";
+import brickImg from "../assets/brickImg.png";
+import castStoneImg from "../assets/castStoneImg.png";
+import stuccoImg from "../assets/stuccoImg.jpg";
+import eifsImg from "../assets/eifsImg.png";
+import sidewalksImg from "../assets/sidewalksImg.png";
+import stoneVeneerImg from "../assets/stoneVeneerImg.png";
+import parapetImg from "../assets/parapetImg.png";
+
 const services = [
   {
     title: "CMU Block Work",
     description:
       "Expert installation of concrete masonry units for structural durability.",
-    icon: "🧱",
+    image: cmuImg,
   },
   {
     title: "Brick Installation & Restoration",
     description:
       "Classic brickwork for new projects or historic building restoration.",
-    icon: "🏗️",
+    image: brickImg,
   },
   {
     title: "Cast Stone Fabrication",
     description:
       "Custom cast stone pieces fabricated and installed with precision.",
-    icon: "🪨",
+    image: castStoneImg,
   },
   {
     title: "Stucco Finishes & Repairs",
     description: "Smooth, durable stucco application and maintenance.",
-    icon: "🎨",
+    image: stuccoImg,
   },
   {
     title: "EIFS Systems",
     description:
       "Exterior insulation and finish systems for energy-efficient facades.",
-    icon: "🏘️",
+    image: eifsImg,
   },
   {
     title: "Sidewalks, Walkways & Curbs",
     description: "Safe, clean and level pedestrian and access surfaces.",
-    icon: "🚶‍♂️",
+    image: sidewalksImg,
   },
   {
     title: "Stone Veneer & Natural Stone",
     description: "High-quality stone finishes for elegance and longevity.",
-    icon: "🏞️",
+    image: stoneVeneerImg,
   },
   {
     title: "Parapet Wall & Chimney Repairs",
     description:
       "Restore and secure building elements exposed to the elements.",
-    icon: "🔥",
+    image: parapetImg,
   },
 ];
 
@@ -64,14 +73,19 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-gray-100 p-6 rounded shadow hover:shadow-lg transition"
+              className="relative rounded shadow hover:shadow-lg transition h-64 flex items-end text-white overflow-hidden"
+              style={{
+                backgroundImage: `url(${service.image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
             >
-              <div className="text-4xl mb-4">{service.icon}</div>
-              <h3 className="text-xl font-semibold text-red-700 mb-2">
-                {service.title}
-              </h3>
-              <p className="text-gray-700 text-sm">{service.description}</p>
-              {/* Future enhancement: Add button for "More info" here */}
+              <div className="bg-black bg-opacity-60 w-full p-4">
+                <h3 className="text-lg font-bold text-red-300 mb-1">
+                  {service.title}
+                </h3>
+                <p className="text-sm">{service.description}</p>
+              </div>
             </div>
           ))}
         </div>
