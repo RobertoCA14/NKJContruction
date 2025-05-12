@@ -85,7 +85,7 @@ const ContactAndFooter = () => {
             <a href="mailto:nigel@nkjconstruction.com" aria-label="Email">
               <FaEnvelope className="hover:text-red-400" />
             </a>
-            <a
+            {/* <a
               href="https://www.youtube.com/@nkjconstruction"
               target="_blank"
               rel="noopener noreferrer"
@@ -108,7 +108,7 @@ const ContactAndFooter = () => {
               aria-label="Twitter"
             >
               <FaTwitter className="hover:text-red-400" />
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
