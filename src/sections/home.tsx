@@ -126,7 +126,7 @@ const Home = () => {
         style={{ backgroundImage: `url(${cmuImg})` }}
       >
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 bg-red-800 px-6 py-2 inline-block">
-          PROJECT LIST
+          PROJECTS LIST
         </h2>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto text-sm text-black">
@@ -229,7 +229,9 @@ const Home = () => {
       {/* REPEAT CLIENTS*/}
       <section className="text-white text-center py-16 px-4">
         <div className="max-w-6xl mx-auto bg-gray-600 py-10 px-6 rounded">
-          <h2 className="text-3xl font-bold mb-12">LOYAL CLIENTS</h2>
+          <h2 className="text-3xl font-bold mb-12">
+            Loyal Clients, Lasting Relationships
+          </h2>
           <div className="flex flex-col md:flex-row justify-center items-center gap-8">
             {/* Cliente 1 */}
             <div className="relative">
@@ -266,13 +268,13 @@ const Home = () => {
             {/* Gotham */}
             <div className="space-y-2">
               <img src={logoReutherimg} alt="Gotham" className="mx-auto h-12" />
-              <p className="font-bold">default</p>
+              {/* <p className="font-bold">default</p> */}
               {/* <p>704-804-0139</p> */}
             </div>
             {/* Belden */}
             <div className="space-y-2">
               <img src={beldenLogo} alt="Belden" className="mx-auto h-12" />
-              <p className="font-bold">Mary Smith</p>
+              {/* <p className="font-bold">Mary Smith</p> */}
               {/* <p>646-736-3772</p> */}
             </div>
             {/* HD Supply */}
@@ -282,7 +284,7 @@ const Home = () => {
                 alt="HD Supply"
                 className="mx-auto h-12"
               />
-              <p className="font-bold">Ivan Gonzalez</p>
+              {/* <p className="font-bold">Ivan Gonzalez</p> */}
               {/* <p className="text-sm">Ivan.GonzalezAguirre@whitecap.com</p> */}
             </div>
           </div>
