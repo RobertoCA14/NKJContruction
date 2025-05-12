@@ -1,6 +1,6 @@
 import { useState } from "react";
 import logo from "../assets/logo.png"; // Ajusta si tu ruta es distinta
-
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -40,15 +40,15 @@ const Navbar = () => {
 
         {/* Menú horizontal solo en pantallas grandes */}
         <nav className="hidden md:flex space-x-6 text-gray-800 font-medium">
-          <a href="#hero" className="hover:text-red-600">
+          <Link to="/" className="hover:text-red-600">
             Home
-          </a>
-          <a href="#projects" className="hover:text-red-600">
-            Project
-          </a>
-          <a href="#services" className="hover:text-red-600">
+          </Link>
+          <Link to="/projects" className="hover:text-red-600">
+            Projects
+          </Link>
+          <Link to="/services" className="hover:text-red-600">
             Services
-          </a>
+          </Link>
           <a href="#contact" className="hover:text-red-600">
             Contact
           </a>

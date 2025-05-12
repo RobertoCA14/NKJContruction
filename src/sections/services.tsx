@@ -6,6 +6,8 @@ import eifsImg from "../assets/eifsImg.png";
 import sidewalksImg from "../assets/sidewalksImg.png";
 import stoneVeneerImg from "../assets/stoneVeneerImg.png";
 import parapetImg from "../assets/parapetImg.png";
+import Navbar from "../components/navbar";
+import ContactSection from "../sections/ContactSection";
 
 const services = [
   {
@@ -57,40 +59,44 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="bg-white py-16 px-4">
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl font-bold text-gray-900 mb-6">
-          Masonry Services
-        </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-12">
-          We offer a wide range of expert masonry services tailored to meet both
-          residential and commercial needs. Whether you’re enhancing a new build
-          or restoring a historic structure, our craftsmanship ensures lasting
-          results.
-        </p>
+    <div className=" text-center bg-gray-100 min-h-screen">
+      <Navbar />
+      <section id="services" className="bg-white py-16 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            Masonry Services
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto mb-12">
+            We offer a wide range of expert masonry services tailored to meet
+            both residential and commercial needs. Whether you’re enhancing a
+            new build or restoring a historic structure, our craftsmanship
+            ensures lasting results.
+          </p>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="relative rounded shadow hover:shadow-lg transition h-64 flex items-end text-white overflow-hidden"
-              style={{
-                backgroundImage: `url(${service.image})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
-              <div className="bg-black bg-opacity-60 w-full p-4">
-                <h3 className="text-lg font-bold text-red-300 mb-1">
-                  {service.title}
-                </h3>
-                <p className="text-sm">{service.description}</p>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="relative rounded shadow hover:shadow-lg transition h-64 flex items-end text-white overflow-hidden"
+                style={{
+                  backgroundImage: `url(${service.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className="bg-black bg-opacity-60 w-full p-4">
+                  <h3 className="text-lg font-bold text-red-300 mb-1">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm">{service.description}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <ContactSection />
+    </div>
   );
 };
 

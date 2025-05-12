@@ -1,50 +1,90 @@
-import React from "react";
-import { motion } from "framer-motion";
-
-const projects = [
-  {
-    title: "Modern Office Building",
-    description:
-      "A state-of-the-art commercial office space in the heart of the city.",
-    image: "/images/project1.jpg",
-  },
-  {
-    title: "Luxury Residential Complex",
-    description: "High-end apartments with breathtaking city views.",
-    image: "/images/project2.jpg",
-  },
-  {
-    title: "Shopping Mall Renovation",
-    description:
-      "Complete redesign and modernization of an existing shopping center.",
-    image: "/images/project3.jpg",
-  },
-];
-
-const Projects: React.FC = () => {
+import cmuImg from "../assets/cmuImg.png";
+import ZoomableImage from "../components/ZoomableImage";
+import Navbar from "../components/navbar";
+import edificio170 from "../assets/edificio170.png";
+import edificio55 from "../assets/edificio55.png";
+import edifici711 from "../assets/edifici711.png";
+import ContactSection from "./ContactSection";
+const Projects = () => {
   return (
-    <section id="projects" className="py-16 bg-white">
-      <div className="max-w-screen-xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-8">Our Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              className="bg-gray-100 p-6 rounded-lg shadow-lg"
-              whileHover={{ scale: 1.05 }}
+    <div className=" text-center bg-gray-100 min-h-screen">
+      <Navbar />
+      <section
+        className="bg-cover bg-center py-16 px-4 text-white"
+        style={{ backgroundImage: `url(${cmuImg})` }}
+      >
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 bg-red-800 px-6 py-2 inline-block">
+          PROJECTS LIST
+        </h2>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto text-sm text-black">
+          {[
+            "711 Montgomery, Jersey City, NJ",
+            "618 Pavonia Ave, Jersey City, NJ",
+            "The Grand in West New York, NJ",
+            "55 Jordan Ave, Jersey City, NJ",
+            "170 Erie St, Jersey City, NJ",
+            "555 West 22nd St, NY, NY",
+            "607 Avenue K, NY",
+            "5967 Greyrock Pl, Stamford, CT",
+            "100 Water St, Jersey City, NJ",
+            "180 E 88th St, NY, NY",
+            "515 W 18th St, NY, NY",
+            "70 Vestry, NY, NY",
+            "91 Leonard St, NY, NY",
+            "508 51st St West New York, NJ",
+            "88 Regent St, Jersey City, NJ",
+            "1 College Plaza, Long Island, NY",
+            "491 Bedford Ave, Brooklyn, NY",
+            "1036 Ocean Pkwy, Brooklyn, NY",
+            "20 Grand Ave, Englewood, NJ",
+            "1711 Gravesend, Brooklyn, NY",
+            "13 Bridge St, Stockton, NJ",
+            "38 Jackson Street - Hoboken, NJ",
+            "The River Club (Building 1 & 2), Bogota, NJ",
+            "Autozone in 27-02 Broadway, Fair Lawn, NJ",
+            "Little Falls, NJ",
+            "38 Jackson Street, Hoboken, NJ",
+          ].map((project, i) => (
+            <div
+              key={i}
+              className="bg-white text-black px-4 py-2 rounded text-center shadow-md"
             >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover rounded-md mb-4"
-              />
-              <h3 className="text-xl font-semibold">{project.title}</h3>
-              <p className="text-gray-600 mt-2">{project.description}</p>
-            </motion.div>
+              {project}
+            </div>
           ))}
         </div>
-      </div>
-    </section>
+      </section>
+      {/* Proyectos recientes */}
+      <section id="projects" className="bg-gray-100 py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+            Recent Projects
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center">
+            <ZoomableImage
+              src={edificio170}
+              alt="170 Erie"
+              title="170 Erie Street."
+              subtitle="Jersey City, NJ 07302"
+            />
+            <ZoomableImage
+              src={edificio55}
+              alt="55 Jordan"
+              title="55 Jordan Avenue."
+              subtitle="Jersey City, NJ 07306"
+            />
+            <ZoomableImage
+              src={edifici711}
+              alt="711 Montgomery"
+              title="711 Montgomery Street."
+              subtitle="Jersey City, NJ 07306"
+            />
+          </div>
+        </div>
+      </section>
+      <ContactSection />
+    </div>
   );
 };
 

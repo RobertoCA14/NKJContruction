@@ -1,11 +1,11 @@
 import HeroCarousel from "../components/HeroCarousel";
 import ContactSection from "./ContactSection";
-import ServicesSection from "../sections/ServicesSection";
+
 import Navbar from "../components/navbar";
 import ZoomableImage from "../components/ZoomableImage"; // Ajusta la ruta según tu estructura
 import logo from "../assets/logo.png";
 import portada3 from "../assets/portada3.png";
-import cmuImg from "../assets/cmuImg.png";
+
 import edificio170 from "../assets/edificio170.png";
 import edificio55 from "../assets/edificio55.png";
 import edifici711 from "../assets/edifici711.png";
@@ -90,7 +90,7 @@ const Home = () => {
         </div>
       </section>
       {/* Nuestros servicios   */}
-      <ServicesSection />
+
       {/* Proyectos recientes */}
       <section id="projects" className="bg-gray-100 py-16 px-4">
         <div className="max-w-6xl mx-auto">
@@ -120,53 +120,38 @@ const Home = () => {
         </div>
       </section>
       {/* <div className="w-full h-16 bg-neutral-600"></div> */}
-      {/* Lista de Proyectos  */}
-      <section
-        className="bg-cover bg-center py-16 px-4 text-white"
-        style={{ backgroundImage: `url(${cmuImg})` }}
-      >
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 bg-red-800 px-6 py-2 inline-block">
-          PROJECTS LIST
-        </h2>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto text-sm text-black">
-          {[
-            "711 Montgomery, Jersey City, NJ",
-            "618 Pavonia Ave, Jersey City, NJ",
-            "The Grand in West New York, NJ",
-            "55 Jordan Ave, Jersey City, NJ",
-            "170 Erie St, Jersey City, NJ",
-            "555 West 22nd St, NY, NY",
-            "607 Avenue K, NY",
-            "5967 Greyrock Pl, Stamford, CT",
-            "100 Water St, Jersey City, NJ",
-            "180 E 88th St, NY, NY",
-            "515 W 18th St, NY, NY",
-            "70 Vestry, NY, NY",
-            "91 Leonard St, NY, NY",
-            "508 51st St West New York, NJ",
-            "88 Regent St, Jersey City, NJ",
-            "1 College Plaza, Long Island, NY",
-            "491 Bedford Ave, Brooklyn, NY",
-            "1036 Ocean Pkwy, Brooklyn, NY",
-            "20 Grand Ave, Englewood, NJ",
-            "1711 Gravesend, Brooklyn, NY",
-            "13 Bridge St, Stockton, NJ",
-            "38 Jackson Street - Hoboken, NJ",
-            "The River Club (Building 1 & 2), Bogota, NJ",
-            "Autozone in 27-02 Broadway, Fair Lawn, NJ",
-            "Little Falls, NJ",
-            "38 Jackson Street, Hoboken, NJ",
-          ].map((project, i) => (
-            <div
-              key={i}
-              className="bg-white text-black px-4 py-2 rounded text-center shadow-md"
-            >
-              {project}
+      {/* REPEAT CLIENTS*/}
+      <section className="text-white text-center py-16 px-4">
+        <div className="max-w-6xl mx-auto bg-gray-600 py-10 px-6 rounded">
+          <h2 className="text-3xl font-bold mb-12">
+            Loyal Clients, Lasting Relationships
+          </h2>
+          <div className="flex flex-col md:flex-row justify-center items-center gap-8">
+            {/* Cliente 1 */}
+            <div className="relative">
+              <ZoomableImage src={repeatClient1} alt="Client 1" title="" />
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded">
+                <p className="font-bold">Izzy Neiman</p>
+                {/* <p>3 Buildings to Date</p> */}
+              </div>
             </div>
-          ))}
+
+            {/* Cliente 2 */}
+            <div className="relative">
+              <ZoomableImage src={repeatClient2} alt="Client 2" title="" />
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded">
+                <p className="font-bold">Erik Silverman</p>
+                {/* <p>2 Buildings to Date</p> */}
+              </div>
+            </div>
+          </div>
+
+          {/* <button className="mt-8 bg-white text-gray-900 px-6 py-2 border border-gray-400 shadow">
+            Additional clients provided upon request
+          </button> */}
         </div>
       </section>
+
       {/* UPCOMING PROJECTS  */}
       <section className="bg-gray-100 py-16 px-4" id="upcoming-projects">
         <div className="max-w-6xl mx-auto">
@@ -226,37 +211,6 @@ const Home = () => {
           </div>
         </div>
       </section> */}
-      {/* REPEAT CLIENTS*/}
-      <section className="text-white text-center py-16 px-4">
-        <div className="max-w-6xl mx-auto bg-gray-600 py-10 px-6 rounded">
-          <h2 className="text-3xl font-bold mb-12">
-            Loyal Clients, Lasting Relationships
-          </h2>
-          <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-            {/* Cliente 1 */}
-            <div className="relative">
-              <ZoomableImage src={repeatClient1} alt="Client 1" title="" />
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded">
-                <p className="font-bold">Izzy Neiman</p>
-                {/* <p>3 Buildings to Date</p> */}
-              </div>
-            </div>
-
-            {/* Cliente 2 */}
-            <div className="relative">
-              <ZoomableImage src={repeatClient2} alt="Client 2" title="" />
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded">
-                <p className="font-bold">Erik Silverman</p>
-                {/* <p>2 Buildings to Date</p> */}
-              </div>
-            </div>
-          </div>
-
-          {/* <button className="mt-8 bg-white text-gray-900 px-6 py-2 border border-gray-400 shadow">
-            Additional clients provided upon request
-          </button> */}
-        </div>
-      </section>
 
       {/* SUPPLIER REFERENCES */}
       <section className="bg-white text-center py-16 px-6">
