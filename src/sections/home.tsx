@@ -11,7 +11,7 @@ import edificio55 from "../assets/edificio55.png";
 import edifici711 from "../assets/edifici711.png";
 import repeatClient1 from "../assets/repeatClient1.png";
 import repeatClient2 from "../assets/repeatClient2.png";
-import gothamLogo from "../assets/gothamLogo.png";
+import logoReutherimg from "../assets/logoReutherimg.png";
 import beldenLogo from "../assets/beldenLogo.png";
 import hdsupplyLogo from "../assets/hdsupplyLogo.png";
 import ladrilloedificiouPcomin from "../assets/ladrilloedificiouPcomin.png";
@@ -236,7 +236,7 @@ const Home = () => {
               <ZoomableImage src={repeatClient1} alt="Client 1" title="" />
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded">
                 <p className="font-bold">Izzy Neiman</p>
-                <p>3 Buildings to Date</p>
+                {/* <p>3 Buildings to Date</p> */}
               </div>
             </div>
 
@@ -245,7 +245,7 @@ const Home = () => {
               <ZoomableImage src={repeatClient2} alt="Client 2" title="" />
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded">
                 <p className="font-bold">Erik Silverman</p>
-                <p>2 Buildings to Date</p>
+                {/* <p>2 Buildings to Date</p> */}
               </div>
             </div>
           </div>
@@ -265,15 +265,15 @@ const Home = () => {
           <div className="grid md:grid-cols-3 gap-8 items-center justify-center">
             {/* Gotham */}
             <div className="space-y-2">
-              <img src={gothamLogo} alt="Gotham" className="mx-auto h-12" />
-              <p className="font-bold">Norman Mendoza</p>
-              <p>704-804-0139</p>
+              <img src={logoReutherimg} alt="Gotham" className="mx-auto h-12" />
+              <p className="font-bold">default</p>
+              {/* <p>704-804-0139</p> */}
             </div>
             {/* Belden */}
             <div className="space-y-2">
               <img src={beldenLogo} alt="Belden" className="mx-auto h-12" />
               <p className="font-bold">Mary Smith</p>
-              <p>646-736-3772</p>
+              {/* <p>646-736-3772</p> */}
             </div>
             {/* HD Supply */}
             <div className="space-y-2">
@@ -283,7 +283,7 @@ const Home = () => {
                 className="mx-auto h-12"
               />
               <p className="font-bold">Ivan Gonzalez</p>
-              <p className="text-sm">Ivan.GonzalezAguirre@whitecap.com</p>
+              {/* <p className="text-sm">Ivan.GonzalezAguirre@whitecap.com</p> */}
             </div>
           </div>
           {/* <button className="mt-12 bg-gray-200 px-6 py-2 shadow text-sm">
