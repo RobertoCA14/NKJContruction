@@ -1,11 +1,10 @@
 import HeroCarousel from "../components/HeroCarousel";
 import ContactSection from "./ContactSection";
-
+import ProjetcsList from "../components/ProjetcsList";
 import Navbar from "../components/navbar";
 import ZoomableImage from "../components/ZoomableImage"; // Ajusta la ruta según tu estructura
 import logo from "../assets/logo.png";
 import portada3 from "../assets/portada3.png";
-
 import edificio170 from "../assets/edificio170.png";
 import edificio55 from "../assets/edificio55.png";
 import edifici711 from "../assets/edifici711.png";
@@ -90,7 +89,7 @@ const Home = () => {
         </div>
       </section>
       {/* Nuestros servicios   */}
-
+      <ProjetcsList limit={6} showTitle={true} showButton={true} />
       {/* Proyectos recientes */}
       <section id="projects" className="bg-gray-100 py-16 px-4">
         <div className="max-w-6xl mx-auto">

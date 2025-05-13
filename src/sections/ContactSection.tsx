@@ -1,10 +1,4 @@
-import {
-  FaInstagram,
-  FaEnvelope,
-  FaYoutube,
-  FaFacebook,
-  FaTwitter,
-} from "react-icons/fa";
+import { FaInstagram, FaEnvelope } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import bgContact from "../assets/bgcontact.png";
 
