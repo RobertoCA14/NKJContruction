@@ -53,7 +53,7 @@ const ProjectsList = ({
     >
       {showTitle && (
         <h2
-          className={`text-3xl md:text-4xl font-bold text-center mb-12 ${
+          className={`text-3xl md:text-4xl font-bold mb-12 mx-auto ${
             limit ? "text-gray-900" : "bg-red-800 px-6 py-2 inline-block"
           }`}
         >
