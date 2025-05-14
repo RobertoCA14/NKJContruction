@@ -1,6 +1,7 @@
 import HeroCarousel from "../components/HeroCarousel";
 import ContactSection from "./ContactSection";
 import ProjetcsList from "../components/ProjetcsList";
+import ServiceList from "../components/serviceList";
 import Navbar from "../components/navbar";
 import ZoomableImage from "../components/ZoomableImage"; // Ajusta la ruta según tu estructura
 import logo from "../assets/logo.png";
@@ -19,7 +20,7 @@ import cliente from "../assets/cliente.png";
 import safety from "../assets/safety.png";
 import proyectos from "../assets/proyectos.jpg";
 import { motion } from "framer-motion";
-
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className=" text-center bg-gray-100 min-h-screen">
@@ -89,7 +90,16 @@ const Home = () => {
         </div>
       </section>
       {/* Nuestros servicios   */}
-      <ProjetcsList limit={6} showTitle={true} showButton={true} />
+
+      <ServiceList limit={4} showTitle={true} showButton={true} />
+      <Link
+        to="/services"
+        className="mt-8 inline-block bg-red-700 text-white font-semibold px-6 py-3 rounded hover:bg-red-800 transition"
+      >
+        View All Services
+      </Link>
+      {/* Lista Proyectos  */}
+      <ProjetcsList limit={12} showTitle={true} showButton={true} />
       {/* Proyectos recientes */}
       <section id="projects" className="bg-gray-100 py-16 px-4">
         <div className="max-w-6xl mx-auto">
