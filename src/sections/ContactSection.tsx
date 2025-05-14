@@ -13,10 +13,11 @@ const ContactSection = () => {
       <div className="absolute inset-0 bg-black/60 z-0"></div>
 
       {/* Logo fijo en escritorio */}
+      {/* Logo fijo en escritorio */}
       <img
         src={logo}
         alt="NKJ Construction Logo"
-        className="hidden md:block absolute top-6 left-6 w-20 max-w-[80px] z-20"
+        className="hidden md:block absolute top-6 left-6 w-28 max-w-[112px] z-20"
       />
 
       <div className="relative z-10 max-w-6xl mx-auto w-full md:pl-28">

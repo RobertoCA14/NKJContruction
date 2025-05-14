@@ -2,7 +2,7 @@ import Navbar from "../components/navbar";
 import ContactSection from "../sections/ContactSection";
 import ServiceList from "../components/serviceList"; // donde tengas la lista completa
 
-const ServicesPage = () => {
+const Services = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white text-center">
       <Navbar />
@@ -15,4 +15,4 @@ const ServicesPage = () => {
   );
 };
 
-export default ServicesPage;
+export default Services;
