@@ -20,7 +20,7 @@ import cliente from "../assets/cliente.png";
 import safety from "../assets/safety.png";
 import proyectos from "../assets/proyectos.jpg";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 const Home = () => {
   return (
     <div className=" text-center bg-gray-100 min-h-screen">
@@ -96,7 +96,7 @@ const Home = () => {
       {/* Lista Proyectos  */}
       <ProjetcsList limit={12} showTitle={true} showButton={true} />
       {/* Proyectos recientes */}
-      <section id="projects" className="bg-white py-16 px-4">
+      <section id="projects" className="bg-gray-100 py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
             Recent Projects
@@ -125,7 +125,7 @@ const Home = () => {
       </section>
       {/* <div className="w-full h-16 bg-neutral-600"></div> */}
       {/* REPEAT CLIENTS*/}
-      <section className="text-white text-center py-16 px-4">
+      <section className="bg-white text-white text-center py-16 px-4">
         <div className="max-w-6xl mx-auto bg-gray-600 py-10 px-6 rounded">
           <h2 className="text-3xl font-bold mb-12">
             Loyal Clients, Lasting Relationships
@@ -250,11 +250,11 @@ const Home = () => {
             Additional suppliers provided upon request
           </button> */}
         </div>
-        <div className=" max-w-6xl mx-auto bg-red-800 h-16 w-full"></div>
       </section>
       {/* Línea roja separadora */}
+      <div className=" max-w-6xl mx-auto bg-red-800 h-16 w-full"></div>
       {/* Why Us */}
-      <section className="py-16 px-4 bg-white text-center">
+      <section className="py-16 px-4 bg-gray-100 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-900">
           Why Choose Us
         </h2>
