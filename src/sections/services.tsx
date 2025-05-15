@@ -7,7 +7,7 @@ const Services = () => {
     <div className="flex flex-col min-h-screen bg-white text-center">
       <Navbar />
 
-      <main className="flex-grow bg-cover bg-center pt-40 pb-16 px-4 text-white">
+      <main className="flex-grow bg-cover bg-center pt-20 md:pt-28 pb-16 px-4 text-white">
         <ServiceList />
       </main>
       <ContactSection />
