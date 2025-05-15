@@ -45,47 +45,55 @@ const ProjectsList = ({
   const visibleProjects = limit ? allProjects.slice(0, limit) : allProjects;
 
   return (
-    <section
-      className={`${
-        limit ? "bg-gray-100" : "bg-cover bg-center text-white"
-      } py-16 px-4`}
-      style={!limit ? { backgroundImage: `url(${cmuImg})` } : {}}
-    >
-      {showTitle && (
-        <h2
-          className={`text-3xl md:text-4xl font-bold mb-12 mx-auto ${
-            limit ? "text-gray-900" : "bg-red-800 px-6 py-2 inline-block"
-          }`}
-        >
-          {limit ? "Featured Projects" : "PROJECTS LIST"}
-        </h2>
-      )}
-
+    <section className="relative py-16 px-4 text-white overflow-hidden">
+      {/* Imagen de fondo siempre visible */}
       <div
-        className={`grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto text-sm ${
-          limit ? "text-black" : "text-black"
-        }`}
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${cmuImg})` }}
       >
-        {visibleProjects.map((project, i) => (
-          <div
-            key={i}
-            className="bg-white px-4 py-2 rounded text-center shadow-md"
-          >
-            {project}
-          </div>
-        ))}
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
-      {showButton && (
-        <div className="text-center mt-10">
-          <Link
-            to="/projects"
-            className="inline-block bg-red-700 text-white font-semibold px-6 py-3 rounded hover:bg-red-800 transition"
+      {/* Contenido encima del fondo */}
+      <div className="relative z-10 max-w-6xl mx-auto">
+        {showTitle && (
+          <h2
+            className={`text-3xl md:text-4xl font-bold mb-12 text-center relative ${
+              limit
+                ? "text-gray-100"
+                : "bg-red-800 px-6 py-2 inline-block shadow-lg text-white"
+            }`}
           >
-            View All Projects
-          </Link>
+            {limit ? "Featured Projects" : "PROJECTS LIST"}
+          </h2>
+        )}
+
+        <div
+          className={`grid grid-cols-2 md:grid-cols-4 gap-4 text-sm ${
+            limit ? "text-white" : "text-white"
+          }`}
+        >
+          {visibleProjects.map((project, i) => (
+            <div
+              key={i}
+              className="bg-white text-black px-4 py-2 rounded text-center shadow-md hover:shadow-lg hover:scale-105 transition duration-200"
+            >
+              {project}
+            </div>
+          ))}
         </div>
-      )}
+
+        {showButton && (
+          <div className="text-center mt-10">
+            <Link
+              to="/projects"
+              className="inline-block bg-red-700 text-white font-semibold px-6 py-3 rounded hover:bg-red-800 transition"
+            >
+              View All Projects
+            </Link>
+          </div>
+        )}
+      </div>
     </section>
   );
 };

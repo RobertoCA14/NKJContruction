@@ -6,7 +6,7 @@ import eifsImg from "../assets/eifsImg.png";
 import sidewalksImg from "../assets/sidewalksImg.png";
 import stoneVeneerImg from "../assets/stoneVeneerImg.png";
 import parapetImg from "../assets/parapetImg.png";
-
+import { Link } from "react-router-dom";
 interface Service {
   title: string;
   description: string;
@@ -67,18 +67,22 @@ const services: Service[] = [
   },
 ];
 
-const ServiceList = ({ limit, showTitle = true }: ServiceListProps) => {
+const ServiceList = ({
+  limit,
+  showTitle = true,
+  showButton = false,
+}: ServiceListProps) => {
   const visibleServices = limit ? services.slice(0, limit) : services;
 
   return (
     <section id="services" className="bg-white py-16 px-4 text-center">
       {showTitle && (
-        <h2 className="text-4xl font-bold text-gray-900 mb-6">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-red-800 tracking-wide uppercase mb-6">
           Masonry Services
         </h2>
       )}
 
-      <p className="text-gray-600 max-w-2xl mx-auto mb-12">
+      <p className="text-gray-700 text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-12">
         We offer a wide range of expert masonry services tailored to meet both
         residential and commercial needs. Whether you’re enhancing a new build
         or restoring a historic structure, our craftsmanship ensures lasting
@@ -89,7 +93,7 @@ const ServiceList = ({ limit, showTitle = true }: ServiceListProps) => {
         {visibleServices.map((service, index) => (
           <div
             key={index}
-            className="relative rounded shadow hover:shadow-lg transition h-64 flex items-end text-white overflow-hidden"
+            className="relative rounded shadow hover:shadow-lg transform hover:scale-105 transition duration-300 h-64 flex items-end text-white overflow-hidden"
             style={{
               backgroundImage: `url(${service.image})`,
               backgroundSize: "cover",
@@ -105,6 +109,16 @@ const ServiceList = ({ limit, showTitle = true }: ServiceListProps) => {
           </div>
         ))}
       </div>
+      {showButton && (
+        <div className="text-center mt-10">
+          <Link
+            to="/services"
+            className="inline-block bg-red-700 text-white font-semibold px-6 py-3 rounded hover:bg-red-800 transition"
+          >
+            View All Services
+          </Link>
+        </div>
+      )}
     </section>
   );
 };

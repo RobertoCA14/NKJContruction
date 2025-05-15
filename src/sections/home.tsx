@@ -92,16 +92,11 @@ const Home = () => {
       {/* Nuestros servicios   */}
 
       <ServiceList limit={4} showTitle={true} showButton={true} />
-      <Link
-        to="/services"
-        className="mt-8 inline-block bg-red-700 text-white font-semibold px-6 py-3 rounded hover:bg-red-800 transition"
-      >
-        View All Services
-      </Link>
+
       {/* Lista Proyectos  */}
       <ProjetcsList limit={12} showTitle={true} showButton={true} />
       {/* Proyectos recientes */}
-      <section id="projects" className="bg-gray-100 py-16 px-4">
+      <section id="projects" className="bg-white py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
             Recent Projects
