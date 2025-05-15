@@ -1,17 +1,17 @@
 import HeroCarousel from "../components/HeroCarousel";
 import ContactSection from "./ContactSection";
-import ServicesSection from "../sections/ServicesSection";
+import ProjetcsList from "../components/ProjetcsList";
+import ServiceList from "../components/serviceList";
 import Navbar from "../components/navbar";
 import ZoomableImage from "../components/ZoomableImage"; // Ajusta la ruta según tu estructura
 import logo from "../assets/logo.png";
 import portada3 from "../assets/portada3.png";
-import cmuImg from "../assets/cmuImg.png";
 import edificio170 from "../assets/edificio170.png";
 import edificio55 from "../assets/edificio55.png";
 import edifici711 from "../assets/edifici711.png";
 import repeatClient1 from "../assets/repeatClient1.png";
 import repeatClient2 from "../assets/repeatClient2.png";
-import gothamLogo from "../assets/gothamLogo.png";
+import logoReutherimg from "../assets/logoReutherimg.png";
 import beldenLogo from "../assets/beldenLogo.png";
 import hdsupplyLogo from "../assets/hdsupplyLogo.png";
 import ladrilloedificiouPcomin from "../assets/ladrilloedificiouPcomin.png";
@@ -23,11 +23,11 @@ import { motion } from "framer-motion";
 
 const Home = () => {
   return (
-    <div className=" text-center bg-gray-100 min-h-screen">
+    <div className=" text-center bg-gray min-h-screen">
       <Navbar />
       <HeroCarousel />
       {/*Parrafo Sobre la empresa */}
-      <section className="bg-white text-center px-6 py-16">
+      <section className="bg-gray text-center px-6 py-16">
         {/* Logo centrado y de tamaño adecuado */}
         <div className="flex justify-center mb-6">
           <ZoomableImage
@@ -90,9 +90,13 @@ const Home = () => {
         </div>
       </section>
       {/* Nuestros servicios   */}
-      <ServicesSection />
+
+      <ServiceList limit={4} showTitle={true} showButton={true} />
+
+      {/* Lista Proyectos  */}
+      <ProjetcsList limit={12} showTitle={true} showButton={true} />
       {/* Proyectos recientes */}
-      <section id="projects" className="bg-gray-100 py-16 px-4">
+      <section id="projects" className="bg-white py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
             Recent Projects
@@ -120,55 +124,40 @@ const Home = () => {
         </div>
       </section>
       {/* <div className="w-full h-16 bg-neutral-600"></div> */}
-      {/* Lista de Proyectos  */}
-      <section
-        className="bg-cover bg-center py-16 px-4 text-white"
-        style={{ backgroundImage: `url(${cmuImg})` }}
-      >
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 bg-red-800 px-6 py-2 inline-block">
-          PROJECT LIST
-        </h2>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto text-sm text-black">
-          {[
-            "711 Montgomery, Jersey City, NJ",
-            "618 Pavonia Ave, Jersey City, NJ",
-            "The Grand in West New York, NJ",
-            "55 Jordan Ave, Jersey City, NJ",
-            "170 Erie St, Jersey City, NJ",
-            "555 West 22nd St, NY, NY",
-            "607 Avenue K, NY",
-            "5967 Greyrock Pl, Stamford, CT",
-            "100 Water St, Jersey City, NJ",
-            "180 E 88th St, NY, NY",
-            "515 W 18th St, NY, NY",
-            "70 Vestry, NY, NY",
-            "91 Leonard St, NY, NY",
-            "508 51st St West New York, NJ",
-            "88 Regent St, Jersey City, NJ",
-            "1 College Plaza, Long Island, NY",
-            "491 Bedford Ave, Brooklyn, NY",
-            "1036 Ocean Pkwy, Brooklyn, NY",
-            "20 Grand Ave, Englewood, NJ",
-            "1711 Gravesend, Brooklyn, NY",
-            "13 Bridge St, Stockton, NJ",
-            "38 Jackson Street - Hoboken, NJ",
-            "The River Club (Building 1 & 2), Bogota, NJ",
-            "Autozone in 27-02 Broadway, Fair Lawn, NJ",
-            "Little Falls, NJ",
-            "38 Jackson Street, Hoboken, NJ",
-          ].map((project, i) => (
-            <div
-              key={i}
-              className="bg-white text-black px-4 py-2 rounded text-center shadow-md"
-            >
-              {project}
+      {/* REPEAT CLIENTS*/}
+      <section className="bg-gray-100 text-black text-center py-16 px-4">
+        <div className="max-w-6xl mx-auto bg-gray-200 py-10 px-6 rounded">
+          <h2 className="text-3xl font-bold mb-12">
+            Loyal Clients, Lasting Relationships
+          </h2>
+          <div className="flex flex-col md:flex-row justify-center items-center gap-8">
+            {/* Cliente 1 */}
+            <div className="relative">
+              <ZoomableImage src={repeatClient1} alt="Client 1" title="" />
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded">
+                <p className="font-bold">Izzy Neiman</p>
+                {/* <p>3 Buildings to Date</p> */}
+              </div>
             </div>
-          ))}
+
+            {/* Cliente 2 */}
+            <div className="relative">
+              <ZoomableImage src={repeatClient2} alt="Client 2" title="" />
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded">
+                <p className="font-bold">Erik Silverman</p>
+                {/* <p>2 Buildings to Date</p> */}
+              </div>
+            </div>
+          </div>
+
+          {/* <button className="mt-8 bg-white text-gray-900 px-6 py-2 border border-gray-400 shadow">
+            Additional clients provided upon request
+          </button> */}
         </div>
       </section>
+
       {/* UPCOMING PROJECTS  */}
-      <section className="bg-gray-100 py-16 px-4" id="upcoming-projects">
+      <section className="bg-white py-16 px-4" id="upcoming-projects">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             UPCOMING PROJECTS
@@ -226,38 +215,9 @@ const Home = () => {
           </div>
         </div>
       </section> */}
-      {/* REPEAT CLIENTS*/}
-      <section className="text-white text-center py-16 px-4">
-        <div className="max-w-6xl mx-auto bg-gray-600 py-10 px-6 rounded">
-          <h2 className="text-3xl font-bold mb-12">LOYAL CLIENTS</h2>
-          <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-            {/* Cliente 1 */}
-            <div className="relative">
-              <ZoomableImage src={repeatClient1} alt="Client 1" title="" />
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded">
-                <p className="font-bold">Izzy Neiman</p>
-                <p>3 Buildings to Date</p>
-              </div>
-            </div>
-
-            {/* Cliente 2 */}
-            <div className="relative">
-              <ZoomableImage src={repeatClient2} alt="Client 2" title="" />
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded">
-                <p className="font-bold">Erik Silverman</p>
-                <p>2 Buildings to Date</p>
-              </div>
-            </div>
-          </div>
-
-          {/* <button className="mt-8 bg-white text-gray-900 px-6 py-2 border border-gray-400 shadow">
-            Additional clients provided upon request
-          </button> */}
-        </div>
-      </section>
 
       {/* SUPPLIER REFERENCES */}
-      <section className="bg-white text-center py-16 px-6">
+      <section className="bg-gray-100 text-center py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold mb-12">
             SUPPLIER REFERENCES
@@ -265,15 +225,15 @@ const Home = () => {
           <div className="grid md:grid-cols-3 gap-8 items-center justify-center">
             {/* Gotham */}
             <div className="space-y-2">
-              <img src={gothamLogo} alt="Gotham" className="mx-auto h-12" />
-              <p className="font-bold">Norman Mendoza</p>
-              <p>704-804-0139</p>
+              <img src={logoReutherimg} alt="Gotham" className="mx-auto h-12" />
+              {/* <p className="font-bold">default</p> */}
+              {/* <p>704-804-0139</p> */}
             </div>
             {/* Belden */}
             <div className="space-y-2">
               <img src={beldenLogo} alt="Belden" className="mx-auto h-12" />
-              <p className="font-bold">Mary Smith</p>
-              <p>646-736-3772</p>
+              {/* <p className="font-bold">Mary Smith</p> */}
+              {/* <p>646-736-3772</p> */}
             </div>
             {/* HD Supply */}
             <div className="space-y-2">
@@ -282,17 +242,17 @@ const Home = () => {
                 alt="HD Supply"
                 className="mx-auto h-12"
               />
-              <p className="font-bold">Ivan Gonzalez</p>
-              <p className="text-sm">Ivan.GonzalezAguirre@whitecap.com</p>
+              {/* <p className="font-bold">Ivan Gonzalez</p> */}
+              {/* <p className="text-sm">Ivan.GonzalezAguirre@whitecap.com</p> */}
             </div>
           </div>
           {/* <button className="mt-12 bg-gray-200 px-6 py-2 shadow text-sm">
             Additional suppliers provided upon request
           </button> */}
         </div>
-        <div className=" max-w-6xl mx-auto bg-red-800 h-16 w-full"></div>
       </section>
       {/* Línea roja separadora */}
+      <div className=" max-w-6xl mx-auto bg-red-800 h-16 w-full"></div>
       {/* Why Us */}
       <section className="py-16 px-4 bg-white text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-900">

@@ -1,50 +1,52 @@
-import React from "react";
-import { motion } from "framer-motion";
-
-const projects = [
-  {
-    title: "Modern Office Building",
-    description:
-      "A state-of-the-art commercial office space in the heart of the city.",
-    image: "/images/project1.jpg",
-  },
-  {
-    title: "Luxury Residential Complex",
-    description: "High-end apartments with breathtaking city views.",
-    image: "/images/project2.jpg",
-  },
-  {
-    title: "Shopping Mall Renovation",
-    description:
-      "Complete redesign and modernization of an existing shopping center.",
-    image: "/images/project3.jpg",
-  },
-];
-
-const Projects: React.FC = () => {
+import Navbar from "../components/navbar";
+import ProjectsList from "../components/ProjetcsList";
+import ContactSection from "./ContactSection";
+import cmuImg from "../assets/cmuImg.png"; // ✅ Import correcto
+import edificio170 from "../assets/edificio170.png";
+import edificio55 from "../assets/edificio55.png";
+import edifici711 from "../assets/edifici711.png";
+import ZoomableImage from "../components/ZoomableImage";
+const Projects = () => {
   return (
-    <section id="projects" className="py-16 bg-white">
-      <div className="max-w-screen-xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-8">Our Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              className="bg-gray-100 p-6 rounded-lg shadow-lg"
-              whileHover={{ scale: 1.05 }}
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover rounded-md mb-4"
-              />
-              <h3 className="text-xl font-semibold">{project.title}</h3>
-              <p className="text-gray-600 mt-2">{project.description}</p>
-            </motion.div>
-          ))}
+    <div className="flex flex-col min-h-screen bg-white text-center">
+      <Navbar />
+
+      <main
+        className="flex-grow bg-cover bg-center pt-40 pb-16 px-4 text-white"
+        style={{ backgroundImage: `url(${cmuImg})` }}
+      >
+        <ProjectsList />
+      </main>
+      {/* Proyectos recientes */}
+      <section id="projects" className="bg-gray-100 py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+            Recent Projects
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center">
+            <ZoomableImage
+              src={edificio170}
+              alt="170 Erie"
+              title="170 Erie Street."
+              subtitle="Jersey City, NJ 07302"
+            />
+            <ZoomableImage
+              src={edificio55}
+              alt="55 Jordan"
+              title="55 Jordan Avenue."
+              subtitle="Jersey City, NJ 07306"
+            />
+            <ZoomableImage
+              src={edifici711}
+              alt="711 Montgomery"
+              title="711 Montgomery Street."
+              subtitle="Jersey City, NJ 07306"
+            />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <ContactSection />
+    </div>
   );
 };
 

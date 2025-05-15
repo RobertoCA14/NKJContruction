@@ -1,11 +1,11 @@
 import { useState } from "react";
 import logo from "../assets/logo.png"; // Ajusta si tu ruta es distinta
-
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+    <header className="fixed top-0 left-0 w-full bg-black/50 backdrop-blur-sm shadow-md z-50">
       <div className="max-w-[1280px] mx-auto flex justify-between items-center py-4 px-6">
         {/* Logo + Texto */}
         <a
@@ -13,7 +13,7 @@ const Navbar = () => {
           className="flex items-center space-x-2 hover:opacity-80 transition"
         >
           <img src={logo} alt="Logo" className="h-12 object-contain" />
-          <span className="text-red-800 text-xl font-bold whitespace-nowrap">
+          <span className="text-white text-xl font-bold whitespace-nowrap">
             NKJ Construction LLC
           </span>
         </a>
@@ -39,16 +39,16 @@ const Navbar = () => {
         </button>
 
         {/* Menú horizontal solo en pantallas grandes */}
-        <nav className="hidden md:flex space-x-6 text-gray-800 font-medium">
-          <a href="#hero" className="hover:text-red-600">
+        <nav className="hidden md:flex space-x-6 text-white font-medium">
+          <Link to="/" className="hover:text-red-600">
             Home
-          </a>
-          <a href="#projects" className="hover:text-red-600">
-            Project
-          </a>
-          <a href="#services" className="hover:text-red-600">
+          </Link>
+          <Link to="/projects" className="hover:text-red-600">
+            Projects
+          </Link>
+          <Link to="/services" className="hover:text-red-600">
             Services
-          </a>
+          </Link>
           <a href="#contact" className="hover:text-red-600">
             Contact
           </a>
