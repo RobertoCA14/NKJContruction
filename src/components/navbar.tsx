@@ -24,7 +24,7 @@ const Navbar = () => {
           className="md:hidden focus:outline-none"
         >
           <svg
-            className="w-6 h-6 text-gray-800"
+            className="w-6 h-6 text-white"
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
@@ -58,7 +58,7 @@ const Navbar = () => {
       {/* Menú móvil desplegable */}
       {menuOpen && (
         <div className="md:hidden px-6 pb-4">
-          <nav className="flex flex-col space-y-3 text-gray-800 font-medium">
+          <nav className="flex flex-col space-y-3 text-white font-medium">
             <a href="#hero" className="hover:text-red-600">
               Home
             </a>
