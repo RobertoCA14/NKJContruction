@@ -6,7 +6,7 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="relative bg-cover bg-center text-white px-6 py-20 min-h-[35vh] flex flex-col justify-center"
+      className="relative bg-cover bg-center text-white px-4 py-10 md:py-15 min-h-[25vh] md:min-h-[35vh] flex flex-col justify-center"
       style={{ backgroundImage: `url(${bgContact})` }}
     >
       {/* Capa oscura encima del fondo */}
