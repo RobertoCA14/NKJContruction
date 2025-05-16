@@ -64,7 +64,7 @@ const ProjectsList = ({
                 : "bg-red-800 px-6 py-2 inline-block shadow-lg text-white"
             }`}
           >
-            {limit ? "Featured Projects" : "PROJECTS LIST"}
+            {limit ? "COMPLETED PROJECTS" : "COMPLETED PROJECTS"}
           </h2>
         )}
 
