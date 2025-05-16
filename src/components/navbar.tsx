@@ -63,7 +63,7 @@ const Navbar = () => {
               Home
             </a>
             <a href="#projects" className="hover:text-red-600">
-              Project
+              Projects
             </a>
             <a href="#services" className="hover:text-red-600">
               Services
