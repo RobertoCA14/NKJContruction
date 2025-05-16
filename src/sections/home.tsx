@@ -105,19 +105,19 @@ const Home = () => {
             <ZoomableImage
               src={edificio170}
               alt="170 Erie"
-              title="170 Erie Street."
+              title="170 Erie Street"
               subtitle="Jersey City, NJ 07302"
             />
             <ZoomableImage
               src={edificio55}
               alt="55 Jordan"
-              title="55 Jordan Avenue."
+              title="55 Jordan Avenue"
               subtitle="Jersey City, NJ 07306"
             />
             <ZoomableImage
               src={edifici711}
               alt="711 Montgomery"
-              title="711 Montgomery Street."
+              title="711 Montgomery Street"
               subtitle="Jersey City, NJ 07306"
             />
           </div>
