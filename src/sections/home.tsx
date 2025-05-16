@@ -33,7 +33,7 @@ const Home = () => {
           <ZoomableImage
             src={logo}
             alt="Logo"
-            className="w-24 sm:w-32 md:w-44 lg:w-56 xl:w-64 h-auto object-contain bg-white rounded shadow-none"
+            className="w-24 sm:w-32 md:w-44 lg:w-56 xl:w-64 2xl:w-72 2xl:w-80 h-auto object-contain bg-white rounded shadow-none"
           />
         </div>
 
@@ -144,7 +144,7 @@ const Home = () => {
             <div className="relative">
               <ZoomableImage src={repeatClient2} alt="Client 2" title="" />
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded">
-                <p className="font-bold">Erik Silverman</p>
+                <p className="font-bold">Eric Silverman</p>
                 {/* <p>2 Buildings to Date</p> */}
               </div>
             </div>
@@ -160,7 +160,7 @@ const Home = () => {
       <section className="bg-white py-16 px-4" id="upcoming-projects">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            UPCOMING PROJECTS
+            CURRENT PROJECTS
           </h2>
 
           {/* Grid de texto de proyectos */}
