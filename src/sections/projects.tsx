@@ -6,7 +6,11 @@ import edificio170 from "../assets/edificio170.png";
 import edificio55 from "../assets/edificio55.png";
 import edifici711 from "../assets/edifici711.png";
 import ZoomableImage from "../components/ZoomableImage";
+import { useEffect } from "react";
 const Projects = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="flex flex-col min-h-screen bg-white text-center">
       <Navbar />

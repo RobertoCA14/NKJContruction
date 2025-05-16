@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className="max-w-[1280px] mx-auto flex justify-between items-center py-4 px-6">
         {/* Logo + Texto */}
         <a
-          href="#hero"
+          href="/"
           className="flex items-center space-x-2 hover:opacity-80 transition"
         >
           <img src={logo} alt="Logo" className="h-12 object-contain" />
@@ -40,9 +40,9 @@ const Navbar = () => {
 
         {/* Menú horizontal solo en pantallas grandes */}
         <nav className="hidden md:flex space-x-6 text-white font-medium">
-          <Link to="/" className="hover:text-red-600">
+          <a href="/" className="hover:text-red-600">
             Home
-          </Link>
+          </a>
           <Link to="/projects" className="hover:text-red-600">
             Projects
           </Link>
@@ -59,13 +59,13 @@ const Navbar = () => {
       {menuOpen && (
         <div className="md:hidden px-6 pb-4">
           <nav className="flex flex-col space-y-3 text-white font-medium">
-            <a href="#hero" className="hover:text-red-600">
+            <a href="/" className="hover:text-red-600">
               Home
             </a>
-            <a href="#projects" className="hover:text-red-600">
+            <a href="/projects" className="hover:text-red-600">
               Projects
             </a>
-            <a href="#services" className="hover:text-red-600">
+            <a href="/services" className="hover:text-red-600">
               Services
             </a>
             <a href="#contact" className="hover:text-red-600">
