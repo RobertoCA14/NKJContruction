@@ -13,8 +13,17 @@ import repeatClient2 from "../assets/repeatClient2.png";
 import logoReutherimg from "../assets/logoReutherimg.png";
 import beldenLogo from "../assets/beldenLogo.png";
 import hdsupplyLogo from "../assets/hdsupplyLogo.png";
-
+import { useEffect } from "react";
+if (typeof window !== "undefined") {
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  };
+}
 const Home = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className=" text-center bg-gray min-h-screen">
       <Navbar />
