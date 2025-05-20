@@ -1,7 +1,6 @@
 import Navbar from "../components/navbar";
 import ProjectsList from "../components/ProjetcsList";
 import ContactSection from "./ContactSection";
-import cmuImg from "../assets/cmuImg.png"; // ✅ Import correcto
 import edificio170 from "../assets/edificio170.png";
 import edificio55 from "../assets/edificio55.png";
 import edifici711 from "../assets/edifici711.png";
