@@ -1,30 +1,49 @@
-import { useState } from "react";
-import logo from "../assets/logo.png"; // Ajusta si tu ruta es distinta
+import { useEffect, useState } from "react";
+import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
+
 const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+    const controlNavbar = () => {
+      const currentScrollY = window.scrollY;
+
+      setScrolled(currentScrollY > 10);
+      setVisible(currentScrollY < lastScrollY || currentScrollY < 50);
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", controlNavbar);
+    return () => window.removeEventListener("scroll", controlNavbar);
+  }, [lastScrollY]);
+
   return (
-    <header className="fixed top-0 left-0 w-full bg-black/50 backdrop-blur-sm shadow-md z-50">
-      <div className="max-w-[1280px] mx-auto flex justify-between items-center py-4 px-6">
-        {/* Logo + Texto */}
-        <a
-          href="/"
-          className="flex items-center space-x-2 hover:opacity-80 transition"
-        >
-          <img src={logo} alt="Logo" className="h-12 object-contain" />
-          <span className="text-white text-xl font-bold whitespace-nowrap">
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-sm
+        ${visible ? "translate-y-0" : "-translate-y-full"}
+        ${scrolled ? "bg-white shadow text-black" : "bg-black/60 text-white"}`}
+    >
+      <div className="max-w-[1280px] mx-auto flex justify-between items-center py-6 px-6 md:py-8">
+        <a href="/" className="flex items-center space-x-2">
+          <img src={logo} alt="Logo" className="h-16 object-contain md:h-20" />
+
+          <span className="text-2xl md:text-3xl font-bold whitespace-nowrap">
             NKJ Construction LLC
           </span>
         </a>
 
-        {/* Botón menú móvil */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden focus:outline-none"
         >
           <svg
-            className="w-6 h-6 text-white"
+            className={`w-6 h-6 transition ${
+              scrolled ? "text-black" : "text-white"
+            }`}
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
@@ -38,11 +57,10 @@ const Navbar = () => {
           </svg>
         </button>
 
-        {/* Menú horizontal solo en pantallas grandes */}
-        <nav className="hidden md:flex space-x-6 text-white font-medium">
-          <a href="/" className="hover:text-red-600">
+        <nav className="hidden md:flex space-x-8 text-lg font-semibold">
+          <Link to="/" className="hover:text-red-600">
             Home
-          </a>
+          </Link>
           <Link to="/projects" className="hover:text-red-600">
             Projects
           </Link>
@@ -55,13 +73,12 @@ const Navbar = () => {
         </nav>
       </div>
 
-      {/* Menú móvil desplegable */}
       {menuOpen && (
-        <div className="md:hidden px-6 pb-4">
-          <nav className="flex flex-col space-y-3 text-white font-medium">
-            <a href="/" className="hover:text-red-600">
+        <div className="md:hidden px-6 pb-4 bg-white text-black shadow">
+          <nav className="flex flex-col space-y-4 text-lg font-semibold">
+            <Link to="/" className="hover:text-red-600">
               Home
-            </a>
+            </Link>
             <Link to="/projects" className="hover:text-red-600">
               Projects
             </Link>

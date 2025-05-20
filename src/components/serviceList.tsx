@@ -75,7 +75,7 @@ const ServiceList = ({
   const visibleServices = limit ? services.slice(0, limit) : services;
 
   return (
-    <section id="services" className="bg-white py-16 px-4 text-center">
+    <section id="services" className="bg-gray-100 py-16 px-4 text-center">
       {showTitle && (
         <h2 className="text-4xl md:text-5xl font-extrabold text-red-800 tracking-wide uppercase mb-6">
           Masonry Services
