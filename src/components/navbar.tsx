@@ -27,11 +27,11 @@ const Navbar = () => {
         ${visible ? "translate-y-0" : "-translate-y-full"}
         ${scrolled ? "bg-white shadow text-black" : "bg-black/60 text-white"}`}
     >
-      <div className="max-w-[1280px] mx-auto flex justify-between items-center py-6 px-6 md:py-8">
+      <div className="max-w-[1280px] mx-auto flex justify-between items-center py-4 px-6 md:py-5">
         <a href="/" className="flex items-center space-x-2">
-          <img src={logo} alt="Logo" className="h-16 object-contain md:h-20" />
+          <img src={logo} alt="Logo" className="h-12 object-contain md:h-14" />
 
-          <span className="text-2xl md:text-3xl font-bold whitespace-nowrap">
+          <span className="text-xl md:text-2xl font-bold whitespace-nowrap">
             NKJ Construction LLC
           </span>
         </a>
