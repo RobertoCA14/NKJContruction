@@ -58,9 +58,9 @@ const Navbar = () => {
         </button>
 
         <nav className="hidden md:flex space-x-8 text-lg font-semibold">
-          <Link to="/" className="hover:text-red-600">
+          <a href="/" className="hover:text-red-600">
             Home
-          </Link>
+          </a>
           <Link to="/projects" className="hover:text-red-600">
             Projects
           </Link>
@@ -76,9 +76,9 @@ const Navbar = () => {
       {menuOpen && (
         <div className="md:hidden px-6 pb-4 bg-white text-black shadow">
           <nav className="flex flex-col space-y-4 text-lg font-semibold">
-            <Link to="/" className="hover:text-red-600">
+            <a href="/" className="hover:text-red-600">
               Home
-            </Link>
+            </a>
             <Link to="/projects" className="hover:text-red-600">
               Projects
             </Link>
