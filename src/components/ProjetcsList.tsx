@@ -4,13 +4,15 @@ import edificio170 from "../assets/edificio170.png";
 import edificio55 from "../assets/edificio55.png";
 import edifici711 from "../assets/edifici711.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { Button } from "@mui/material";
+import { useState, useRef } from "react";
+import { Button, IconButton } from "@mui/material";
+import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
-import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "swiper/css/effect-coverflow";
 
 const projectData = [
   { name: "711 Montgomery", location: "Jersey City, NJ", image: edifici711 },
@@ -63,13 +65,15 @@ const ProjectsList = ({
 }: ProjectsListProps) => {
   const itemsPerPage = 8;
   const [page, setPage] = useState(1);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+
   const totalPages = Math.ceil(
     (limit ? projectData.slice(0, limit).length : projectData.length) /
       itemsPerPage
   );
 
   const projectsToShow = limit ? projectData.slice(0, limit) : projectData;
-
   const paginatedProjects = projectsToShow.slice(
     (page - 1) * itemsPerPage,
     page * itemsPerPage
@@ -91,38 +95,95 @@ const ProjectsList = ({
         )}
 
         {useSlider ? (
-          <Swiper
-            modules={[Navigation, Pagination]}
-            navigation
-            pagination={{ clickable: true }}
-            spaceBetween={20}
-            slidesPerView={1}
-            breakpoints={{
-              640: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-            }}
-          >
-            {projectsToShow.map((project, i) => (
-              <SwiperSlide key={i}>
-                <div className="overflow-hidden rounded-lg hover:shadow-2xl transition-all duration-300">
-                  <img
-                    src={project.image}
-                    alt={project.name}
-                    className="w-full aspect-[4/3] object-cover rounded-t-lg"
-                  />
-                  <div className="pt-4 text-left">
-                    <p className="text-xs uppercase tracking-wide text-gray-500 font-medium px-2">
-                      {project.location}
-                    </p>
-                    <h3 className="text-lg font-semibold text-gray-900 px-2 pb-4">
-                      {project.name}
-                    </h3>
+          <div className="relative">
+            {/* Flechas fuera del slider, centradas verticalmente */}
+            <IconButton
+              ref={prevRef}
+              sx={{
+                position: "absolute",
+                top: "50%",
+                left: 0,
+                zIndex: 10,
+                transform: "translateY(-50%)",
+                backgroundColor: "rgba(0,0,0,0.4)",
+                color: "#fff",
+                "&:hover": {
+                  backgroundColor: "#d32f2f",
+                },
+              }}
+            >
+              <ArrowBackIosNew />
+            </IconButton>
+
+            <IconButton
+              ref={nextRef}
+              sx={{
+                position: "absolute",
+                top: "50%",
+                right: 0,
+                zIndex: 10,
+                transform: "translateY(-50%)",
+                backgroundColor: "rgba(0,0,0,0.4)",
+                color: "#fff",
+                "&:hover": {
+                  backgroundColor: "#d32f2f",
+                },
+              }}
+            >
+              <ArrowForwardIos />
+            </IconButton>
+
+            <Swiper
+              modules={[Navigation, Pagination, EffectCoverflow]}
+              effect="coverflow"
+              grabCursor={true}
+              centeredSlides={true}
+              loop={true}
+              navigation={{
+                prevEl: prevRef.current,
+                nextEl: nextRef.current,
+              }}
+              onBeforeInit={(swiper) => {
+                //@ts-ignore
+                swiper.params.navigation.prevEl = prevRef.current;
+                //@ts-ignore
+                swiper.params.navigation.nextEl = nextRef.current;
+              }}
+              pagination={{ clickable: true }}
+              breakpoints={{
+                640: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+              coverflowEffect={{
+                rotate: 30,
+                stretch: 0,
+                depth: 200,
+                modifier: 1,
+                slideShadows: false,
+              }}
+            >
+              {projectsToShow.map((project, i) => (
+                <SwiperSlide key={i}>
+                  <div className="overflow-hidden rounded-lg hover:shadow-2xl transition-all duration-300">
+                    <img
+                      src={project.image}
+                      alt={project.name}
+                      className="w-full aspect-[5/4] object-cover rounded-t-lg"
+                    />
+                    <div className="pt-4 text-left">
+                      <p className="text-xs uppercase tracking-wide text-gray-500 font-medium px-2">
+                        {project.location}
+                      </p>
+                      <h3 className="text-lg font-semibold text-gray-900 px-2 pb-4">
+                        {project.name}
+                      </h3>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-12 px-4 md:px-8">
             {paginatedProjects.map((project, i) => (

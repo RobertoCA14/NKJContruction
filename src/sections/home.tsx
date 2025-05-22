@@ -95,13 +95,18 @@ const Home = () => {
       </AnimatedSection>
       {/* Nuestros servicios   */}
       <AnimatedSection>
-        <ServiceList limit={4} showTitle={true} showButton={true} />
+        <ServiceList
+          limit={6}
+          showTitle={true}
+          useSlider={true}
+          showButton={true}
+        />
       </AnimatedSection>
 
       {/* Lista Proyectos  */}
       <AnimatedSection>
         <ProjetcsList
-          limit={6}
+          limit={10}
           showTitle={true}
           useSlider={true}
           showButton={true}
