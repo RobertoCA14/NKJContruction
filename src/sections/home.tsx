@@ -100,7 +100,12 @@ const Home = () => {
 
       {/* Lista Proyectos  */}
       <AnimatedSection>
-        <ProjetcsList limit={6} showTitle={true} showButton={true} />
+        <ProjetcsList
+          limit={6}
+          showTitle={true}
+          useSlider={true}
+          showButton={true}
+        />
       </AnimatedSection>
       <AnimatedSection>
         {/* REPEAT CLIENTS*/}

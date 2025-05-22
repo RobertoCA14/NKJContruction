@@ -1,9 +1,16 @@
+// src/components/ProjectsList.tsx
 import { motion } from "framer-motion";
 import edificio170 from "../assets/edificio170.png";
 import edificio55 from "../assets/edificio55.png";
 import edifici711 from "../assets/edifici711.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Button } from "@mui/material";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const projectData = [
   { name: "711 Montgomery", location: "Jersey City, NJ", image: edifici711 },
@@ -45,12 +52,14 @@ interface ProjectsListProps {
   limit?: number;
   showTitle?: boolean;
   showButton?: boolean;
+  useSlider?: boolean;
 }
 
 const ProjectsList = ({
   limit,
   showTitle = true,
   showButton = false,
+  useSlider = false,
 }: ProjectsListProps) => {
   const itemsPerPage = 8;
   const [page, setPage] = useState(1);
@@ -59,11 +68,12 @@ const ProjectsList = ({
       itemsPerPage
   );
 
-  const projectsToShow = limit
-    ? projectData
-        .slice(0, limit)
-        .slice((page - 1) * itemsPerPage, page * itemsPerPage)
-    : projectData.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+  const projectsToShow = limit ? projectData.slice(0, limit) : projectData;
+
+  const paginatedProjects = projectsToShow.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
 
   return (
     <section className="bg-white py-16 px-4 text-center">
@@ -80,71 +90,100 @@ const ProjectsList = ({
           </motion.h2>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-12 px-4 md:px-8">
-          {projectsToShow.map((project, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="overflow-hidden rounded-lg hover:shadow-2xl transition-all duration-300"
-            >
-              <img
-                src={project.image}
-                alt={project.name}
-                className="w-full aspect-[4/3] object-cover rounded-t-lg"
-              />
-              <div className="pt-4 text-left">
-                <p className="text-xs uppercase tracking-wide text-gray-500 font-medium px-2">
-                  {project.location}
-                </p>
-                <h3 className="text-lg font-semibold text-gray-900 px-2 pb-4">
-                  {project.name}
-                </h3>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {useSlider ? (
+          <Swiper
+            modules={[Navigation, Pagination]}
+            navigation
+            pagination={{ clickable: true }}
+            spaceBetween={20}
+            slidesPerView={1}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+          >
+            {projectsToShow.map((project, i) => (
+              <SwiperSlide key={i}>
+                <div className="overflow-hidden rounded-lg hover:shadow-2xl transition-all duration-300">
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className="w-full aspect-[4/3] object-cover rounded-t-lg"
+                  />
+                  <div className="pt-4 text-left">
+                    <p className="text-xs uppercase tracking-wide text-gray-500 font-medium px-2">
+                      {project.location}
+                    </p>
+                    <h3 className="text-lg font-semibold text-gray-900 px-2 pb-4">
+                      {project.name}
+                    </h3>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-12 px-4 md:px-8">
+            {paginatedProjects.map((project, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+                className="overflow-hidden rounded-lg hover:shadow-2xl transition-all duration-300"
+              >
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  className="w-full aspect-[4/3] object-cover rounded-t-lg"
+                />
+                <div className="pt-4 text-left">
+                  <p className="text-xs uppercase tracking-wide text-gray-500 font-medium px-2">
+                    {project.location}
+                  </p>
+                  <h3 className="text-lg font-semibold text-gray-900 px-2 pb-4">
+                    {project.name}
+                  </h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
-        {totalPages > 1 && (
+        {!useSlider && totalPages > 1 && (
           <div className="mt-12 flex justify-center items-center flex-wrap gap-6 border-t border-gray-200 pt-6">
-            {/* Números de página */}
             <div className="flex gap-3">
               {Array.from({ length: totalPages }, (_, i) => (
-                <button
+                <Button
                   key={i}
+                  variant={page === i + 1 ? "contained" : "outlined"}
+                  color="primary"
                   onClick={() => setPage(i + 1)}
-                  className={`text-sm font-medium ${
-                    page === i + 1
-                      ? "text-black font-bold"
-                      : "text-gray-500 hover:text-red-600"
-                  }`}
                 >
                   {i + 1}
-                </button>
+                </Button>
               ))}
             </div>
-
-            {/* Botón siguiente */}
             {page < totalPages && (
-              <button
+              <Button
                 onClick={() => setPage(page + 1)}
-                className="text-sm font-semibold text-gray-700 hover:text-red-700 flex items-center gap-1"
+                variant="text"
+                sx={{ fontWeight: "bold" }}
               >
-                NEXT PAGE <span className="text-red-600 text-lg">➤</span>
-              </button>
+                NEXT PAGE ➤
+              </Button>
             )}
           </div>
         )}
 
         {showButton && (
           <div className="mt-12">
-            <Link
-              to="/projects"
-              className="inline-block bg-red-700 text-white px-6 py-3 rounded font-semibold hover:bg-red-800 transition"
-            >
-              View All Projects
+            <Link to="/projects">
+              <Button variant="contained" color="error" size="large">
+                View All Projects
+              </Button>
             </Link>
           </div>
         )}
