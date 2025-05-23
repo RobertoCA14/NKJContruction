@@ -138,57 +138,62 @@ const ServiceList = ({
           >
             <ArrowForwardIos />
           </IconButton>
-
-          <Swiper
-            modules={[Navigation, Pagination, EffectCoverflow]}
-            effect="coverflow"
-            grabCursor={true}
-            centeredSlides={true}
-            loop={true}
-            navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
-            onBeforeInit={(swiper) => {
-              //@ts-ignore
-              swiper.params.navigation.prevEl = prevRef.current;
-              //@ts-ignore
-              swiper.params.navigation.nextEl = nextRef.current;
-            }}
-            pagination={{ clickable: true }}
-            breakpoints={{
-              640: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-            }}
-            coverflowEffect={{
-              rotate: 30,
-              stretch: 0,
-              depth: 200,
-              modifier: 1,
-              slideShadows: false,
-            }}
-          >
-            {visibleServices.map((service, index) => (
-              <SwiperSlide key={index}>
-                <div
-                  className="relative rounded shadow hover:shadow-lg transform hover:scale-105 transition duration-300 overflow-hidden"
-                  style={{
-                    aspectRatio: "5 / 5", // controla la proporción
-                    maxHeight: "400px",
-                    width: "100%",
-                    backgroundImage: `url(${service.image})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                >
-                  <div className="absolute bottom-0 w-full bg-black bg-opacity-60 p-4 text-left text-white">
-                    <h3 className="text-lg font-bold text-red-300 mb-1">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm">{service.description}</p>
+          <div className="max-w-6xl mx-auto">
+            <Swiper
+              modules={[Navigation, Pagination, EffectCoverflow]}
+              effect="coverflow"
+              grabCursor={true}
+              centeredSlides={true}
+              loop={true}
+              navigation={{
+                prevEl: prevRef.current,
+                nextEl: nextRef.current,
+              }}
+              onBeforeInit={(swiper) => {
+                // @ts-ignore
+                swiper.params.navigation.prevEl = prevRef.current;
+                // @ts-ignore
+                swiper.params.navigation.nextEl = nextRef.current;
+              }}
+              pagination={{ clickable: true }}
+              breakpoints={{
+                0: { slidesPerView: 1.4, spaceBetween: 10 }, // pequeño
+                480: { slidesPerView: 1.8, spaceBetween: 20 }, // móviles grandes
+                768: { slidesPerView: 2.5, spaceBetween: 30 }, // tabletas
+                1024: { slidesPerView: 3, spaceBetween: 30 }, // escritorio
+              }}
+              coverflowEffect={{
+                rotate: 30,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: false,
+              }}
+            >
+              {visibleServices.map((service, index) => (
+                <SwiperSlide key={index}>
+                  <div
+                    className="relative rounded shadow hover:shadow-lg transform hover:scale-105 transition duration-300 overflow-hidden"
+                    style={{
+                      aspectRatio: "5 / 5", // controla la proporción
+                      maxHeight: "400px",
+                      width: "100%",
+                      backgroundImage: `url(${service.image})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  >
+                    <div className="absolute bottom-0 w-full bg-black bg-opacity-60 p-4 text-left text-white">
+                      <h3 className="text-lg font-bold text-red-300 mb-1">
+                        {service.title}
+                      </h3>
+                      <p className="text-sm">{service.description}</p>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
       ) : (
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
