@@ -145,23 +145,27 @@ const ServiceList = ({
               grabCursor={true}
               centeredSlides={true}
               loop={true}
-              navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
+              navigation={{
+                prevEl: prevRef.current,
+                nextEl: nextRef.current,
+              }}
               onBeforeInit={(swiper) => {
-                //@ts-ignore
+                // @ts-ignore
                 swiper.params.navigation.prevEl = prevRef.current;
-                //@ts-ignore
+                // @ts-ignore
                 swiper.params.navigation.nextEl = nextRef.current;
               }}
               pagination={{ clickable: true }}
               breakpoints={{
-                640: { slidesPerView: 1 },
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
+                0: { slidesPerView: 1.4, spaceBetween: 10 }, // pequeño
+                480: { slidesPerView: 1.8, spaceBetween: 20 }, // móviles grandes
+                768: { slidesPerView: 2.5, spaceBetween: 30 }, // tabletas
+                1024: { slidesPerView: 3, spaceBetween: 30 }, // escritorio
               }}
               coverflowEffect={{
                 rotate: 30,
                 stretch: 0,
-                depth: 200,
+                depth: 100,
                 modifier: 1,
                 slideShadows: false,
               }}

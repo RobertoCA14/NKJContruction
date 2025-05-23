@@ -144,16 +144,17 @@ const ProjectsList = ({
                   nextEl: nextRef.current,
                 }}
                 onBeforeInit={(swiper) => {
-                  //@ts-ignore
+                  // @ts-ignore
                   swiper.params.navigation.prevEl = prevRef.current;
-                  //@ts-ignore
+                  // @ts-ignore
                   swiper.params.navigation.nextEl = nextRef.current;
                 }}
                 pagination={{ clickable: true }}
                 breakpoints={{
-                  640: { slidesPerView: 1 },
-                  768: { slidesPerView: 2 },
-                  1024: { slidesPerView: 3 },
+                  0: { slidesPerView: 1.4, spaceBetween: 10 }, // pequeño
+                  480: { slidesPerView: 1.8, spaceBetween: 20 }, // móviles grandes
+                  768: { slidesPerView: 2.5, spaceBetween: 30 }, // tabletas
+                  1024: { slidesPerView: 3, spaceBetween: 30 }, // escritorio
                 }}
                 coverflowEffect={{
                   rotate: 30,
