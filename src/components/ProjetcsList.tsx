@@ -13,7 +13,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
-
+import ZoomableImage from "../components/ZoomableImage";
 const projectData = [
   { name: "711 Montgomery", location: "Jersey City, NJ", image: edifici711 },
   { name: "618 Pavonia Ave", location: "Jersey City, NJ", image: edificio55 },
@@ -63,7 +63,7 @@ const ProjectsList = ({
   showButton = false,
   useSlider = false,
 }: ProjectsListProps) => {
-  const itemsPerPage = 8;
+  const itemsPerPage = 6;
   const [page, setPage] = useState(1);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -134,6 +134,7 @@ const ProjectsList = ({
             </IconButton>
             <div className="max-w-6xl mx-auto">
               <Swiper
+                className="!pb-10"
                 modules={[Navigation, Pagination, EffectCoverflow]}
                 effect="coverflow"
                 grabCursor={true}
@@ -198,10 +199,11 @@ const ProjectsList = ({
                 transition={{ duration: 0.5, delay: i * 0.05 }}
                 className="overflow-hidden rounded-lg hover:shadow-2xl transition-all duration-300"
               >
-                <img
+                <ZoomableImage
                   src={project.image}
                   alt={project.name}
                   className="w-full h-auto aspect-[4/3] object-cover rounded-lg"
+                  title=""
                 />
 
                 <div className="pt-4 text-left">
