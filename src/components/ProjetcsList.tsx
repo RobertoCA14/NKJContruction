@@ -80,7 +80,7 @@ const ProjectsList = ({
   );
 
   return (
-    <section className="bg-white py-16 px-4 text-center">
+    <section className="bg-gray-100 py-16 px-4 text-center">
       <div className="max-w-[90rem] mx-auto">
         {showTitle && (
           <motion.h2
