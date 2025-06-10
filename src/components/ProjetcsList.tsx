@@ -14,6 +14,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
 import ZoomableImage from "../components/ZoomableImage";
+
 const projectData = [
   { name: "711 Montgomery", location: "Jersey City, NJ", image: edifici711 },
   { name: "618 Pavonia Ave", location: "Jersey City, NJ", image: edificio55 },
@@ -37,17 +38,6 @@ const projectData = [
   { name: "1711 Gravesend", location: "Brooklyn, NY", image: edificio170 },
   { name: "13 Bridge St", location: "Stockton, NJ", image: edificio55 },
   { name: "38 Jackson Street", location: "Hoboken, NJ", image: edifici711 },
-  {
-    name: "The River Club (Building 1 & 2)",
-    location: "Bogota, NJ",
-    image: edificio55,
-  },
-  {
-    name: "Autozone",
-    location: "27-02 Broadway, Fair Lawn, NJ",
-    image: edificio170,
-  },
-  { name: "Little Falls", location: "NJ", image: edifici711 },
 ];
 
 interface ProjectsListProps {
@@ -80,15 +70,18 @@ const ProjectsList = ({
   );
 
   return (
-    <section className="bg-gray-100 py-16 px-4 text-center">
-      <div className="max-w-[90rem] mx-auto">
+    <section
+      id="services"
+      className="bg-gradient-to-b from-gray-100 to-black py-16 px-4 text-center text-white"
+    >
+      <div className=" max-w-[90rem] mx-auto">
         {showTitle && (
           <motion.h2
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold mb-10"
+            className="text-3xl md:text-4xl font-bold mb-10 text-gray-800"
           >
             Completed Projects
           </motion.h2>
@@ -96,7 +89,6 @@ const ProjectsList = ({
 
         {useSlider ? (
           <div className="relative">
-            {/* Flechas fuera del slider, centradas verticalmente */}
             <IconButton
               ref={prevRef}
               sx={{
@@ -107,9 +99,7 @@ const ProjectsList = ({
                 transform: "translateY(-50%)",
                 backgroundColor: "rgba(0,0,0,0.4)",
                 color: "#fff",
-                "&:hover": {
-                  backgroundColor: "#d32f2f",
-                },
+                "&:hover": { backgroundColor: "#d32f2f" },
               }}
             >
               <ArrowBackIosNew />
@@ -125,13 +115,12 @@ const ProjectsList = ({
                 transform: "translateY(-50%)",
                 backgroundColor: "rgba(0,0,0,0.4)",
                 color: "#fff",
-                "&:hover": {
-                  backgroundColor: "#d32f2f",
-                },
+                "&:hover": { backgroundColor: "#d32f2f" },
               }}
             >
               <ArrowForwardIos />
             </IconButton>
+
             <div className="max-w-6xl mx-auto">
               <Swiper
                 className="!pb-10"
@@ -152,10 +141,10 @@ const ProjectsList = ({
                 }}
                 pagination={{ clickable: true }}
                 breakpoints={{
-                  0: { slidesPerView: 1.4, spaceBetween: 10 }, // pequeño
-                  480: { slidesPerView: 1.8, spaceBetween: 20 }, // móviles grandes
-                  768: { slidesPerView: 2.5, spaceBetween: 30 }, // tabletas
-                  1024: { slidesPerView: 3, spaceBetween: 30 }, // escritorio
+                  0: { slidesPerView: 1.4, spaceBetween: 10 },
+                  480: { slidesPerView: 1.8, spaceBetween: 20 },
+                  768: { slidesPerView: 2.5, spaceBetween: 30 },
+                  1024: { slidesPerView: 3, spaceBetween: 30 },
                 }}
                 coverflowEffect={{
                   rotate: 30,
@@ -167,18 +156,17 @@ const ProjectsList = ({
               >
                 {projectsToShow.map((project, i) => (
                   <SwiperSlide key={i}>
-                    <div className="overflow-hidden rounded-lg hover:shadow-2xl transition-all duration-300">
+                    <div className="overflow-hidden rounded-lg hover:shadow-2xl transition-all duration-300 bg-gradient-to-b from-white to-gray">
                       <img
                         src={project.image}
                         alt={project.name}
                         className="w-full h-auto aspect-[4/3] object-cover rounded-lg"
                       />
-
-                      <div className="pt-4 text-left">
-                        <p className="text-xs uppercase tracking-wide text-gray-500 font-medium px-2">
+                      <div className="pt-4 text-left px-4">
+                        <p className="text-l uppercase tracking-wide text-red-200 font-medium">
                           {project.location}
                         </p>
-                        <h3 className="text-lg font-semibold text-gray-900 px-2 pb-4">
+                        <h3 className="text-lg font-semibold text-white">
                           {project.name}
                         </h3>
                       </div>
@@ -197,7 +185,7 @@ const ProjectsList = ({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="overflow-hidden rounded-lg hover:shadow-2xl transition-all duration-300"
+                className="overflow-hidden rounded-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-b from-white to-gray"
               >
                 <ZoomableImage
                   src={project.image}
@@ -205,12 +193,11 @@ const ProjectsList = ({
                   className="w-full h-auto aspect-[4/3] object-cover rounded-lg"
                   title=""
                 />
-
-                <div className="pt-4 text-left">
-                  <p className="text-xs uppercase tracking-wide text-gray-500 font-medium px-2">
+                <div className="pt-4 text-left px-4">
+                  <p className="text-l uppercase tracking-wide text-red-200 font-medium">
                     {project.location}
                   </p>
-                  <h3 className="text-lg font-semibold text-gray-900 px-2 pb-4">
+                  <h3 className="text-lg font-semibold text-white">
                     {project.name}
                   </h3>
                 </div>
@@ -220,7 +207,7 @@ const ProjectsList = ({
         )}
 
         {!useSlider && totalPages > 1 && (
-          <div className="mt-12 flex justify-center items-center flex-wrap gap-6 border-t border-gray-200 pt-6">
+          <div className="mt-12 flex justify-center items-center flex-wrap gap-6 border-t border-gray-300 pt-6">
             <div className="flex gap-3">
               {Array.from({ length: totalPages }, (_, i) => (
                 <Button

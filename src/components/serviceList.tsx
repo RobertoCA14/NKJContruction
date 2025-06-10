@@ -91,7 +91,10 @@ const ServiceList = ({
   const nextRef = useRef(null);
 
   return (
-    <section id="services" className="bg-gray-100 py-16 px-4 text-center">
+    <section
+      id="services"
+      className="bg-gradient-to-b from-gray-100 to-black py-16 px-4 text-center text-white"
+    >
       <div className="max-w-[90rem] mx-auto">
         {showTitle && (
           <h2 className="text-4xl md:text-5xl font-extrabold text-red-800 tracking-wide uppercase mb-6">

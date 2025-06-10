@@ -63,7 +63,7 @@ const Home = () => {
           </p>
         </section>
       </AnimatedSection>
-      <div className="w-full h-16 bg-[#991B1B]"></div>
+      <div className="w-full h-10 bg-[#991B1B]"></div>
       {/* Imagen a la izquierda */}
       <AnimatedSection>
         <section
@@ -115,7 +115,7 @@ const Home = () => {
       <AnimatedSection>
         {/* REPEAT CLIENTS*/}
         <section className="bg-gray-100 text-black text-center py-16 px-4">
-          <div className="max-w-6xl mx-auto bg-gray-200 py-10 px-6 rounded">
+          <div className="max-w-6xl mx-auto bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-black via-gray-400 to-gray-100 py-16 px-4 text-center text-white py-10 px-6 rounded">
             <h2 className="text-3xl font-bold mb-12">
               Loyal Clients, Lasting Relationships
             </h2>
