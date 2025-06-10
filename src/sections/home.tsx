@@ -71,7 +71,7 @@ const Home = () => {
           style={{ backgroundImage: `url(${portada3})` }}
         >
           {/* Capa oscura encima de la imagen */}
-          <div className="absolute inset-0 bg-black/50 z-0" />
+          <div className="absolute inset-0 bg-black/75 z-0" />
 
           {/* Contenido centrado encima de la imagen */}
           <div className="relative z-10 text-center px-4 max-w-3xl">

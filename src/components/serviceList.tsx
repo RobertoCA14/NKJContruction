@@ -102,7 +102,7 @@ const ServiceList = ({
           </h2>
         )}
 
-        <p className="text-gray-700 text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-12">
+        <p className="text-black text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-12">
           We offer a wide range of expert masonry services tailored to meet both
           residential and commercial needs. Whether you’re enhancing a new build
           or restoring a historic structure, our craftsmanship ensures lasting
