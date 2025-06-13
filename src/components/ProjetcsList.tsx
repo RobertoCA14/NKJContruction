@@ -14,6 +14,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
 import ZoomableImage from "../components/ZoomableImage";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const projectData = [
   { name: "711 Montgomery", location: "Jersey City, NJ", image: edifici711 },
@@ -72,7 +74,7 @@ const ProjectsList = ({
   return (
     <section
       id="services"
-      className="bg-gradient-to-b from-gray-100 to-black py-16 px-4 text-center text-white"
+      className="bg-white py-4 px-4 text-center text-white"
     >
       <div className=" max-w-[90rem] mx-auto">
         {showTitle && (
@@ -156,16 +158,21 @@ const ProjectsList = ({
               >
                 {projectsToShow.map((project, i) => (
                   <SwiperSlide key={i}>
-                    <div className="overflow-hidden rounded-lg hover:shadow-2xl transition-all duration-300 bg-gradient-to-b from-white to-gray">
-                      <img
-                        src={project.image}
-                        alt={project.name}
-                        className="w-full h-auto aspect-[4/3] object-cover rounded-lg"
-                      />
-                      <div className="pt-4 text-left px-4">
-                        <p className="text-l uppercase tracking-wide text-red-200 font-medium">
+                    <div
+                      className="relative rounded shadow hover:shadow-lg transform hover:scale-105 transition duration-300 overflow-hidden"
+                      style={{
+                        aspectRatio: "5 / 5", // controla la proporción
+                        maxHeight: "400px",
+                        width: "100%",
+                        backgroundImage: `url(${project.image})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    >
+                      <div className="absolute bottom-0 w-full bg-black bg-opacity-60 p-4 text-left text-white">
+                        <h3 className="text-lg font-bold text-red-300 mb-1">
                           {project.location}
-                        </p>
+                        </h3>
                         <h3 className="text-lg font-semibold text-white">
                           {project.name}
                         </h3>
@@ -177,7 +184,7 @@ const ProjectsList = ({
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-12 px-4 md:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-12 px-4 md:px-8 bg-gray">
             {paginatedProjects.map((project, i) => (
               <motion.div
                 key={i}
@@ -185,7 +192,7 @@ const ProjectsList = ({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="overflow-hidden rounded-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-b from-white to-gray"
+                className="overflow-hidden rounded-lg hover:shadow-xl transition-all duration-300"
               >
                 <ZoomableImage
                   src={project.image}
@@ -194,10 +201,10 @@ const ProjectsList = ({
                   title=""
                 />
                 <div className="pt-4 text-left px-4">
-                  <p className="text-l uppercase tracking-wide text-red-200 font-medium">
+                  <p className="text-l uppercase tracking-wide text-red-600 font-medium">
                     {project.location}
                   </p>
-                  <h3 className="text-lg font-semibold text-white">
+                  <h3 className="text-lg font-semibold text-black">
                     {project.name}
                   </h3>
                 </div>
@@ -207,7 +214,24 @@ const ProjectsList = ({
         )}
 
         {!useSlider && totalPages > 1 && (
-          <div className="mt-12 flex justify-center items-center flex-wrap gap-6 border-t border-gray-300 pt-6">
+          <div className="mt-8 flex justify-center items-center flex-wrap gap-6 border-t border-gray-300 pt-6">
+            {/* PREVIOUS PAGE button (shown from page 2 onward) */}
+            {page >= 2 && (
+              <Button
+                onClick={() => setPage(page - 1)}
+                startIcon={<ArrowBackIosNewIcon />}
+                variant="text"
+                sx={{
+                  fontWeight: "bold",
+                  color: "#555555",
+                  "&:hover": { color: "black", backgroundColor: "#f0f0f0" },
+                }}
+              >
+                PREVIOUS PAGE
+              </Button>
+            )}
+
+            {/* Page numbers */}
             <div className="flex gap-3">
               {Array.from({ length: totalPages }, (_, i) => (
                 <Button
@@ -215,29 +239,49 @@ const ProjectsList = ({
                   variant={page === i + 1 ? "contained" : "outlined"}
                   color="primary"
                   onClick={() => setPage(i + 1)}
+                  sx={{
+                    color: page === i + 1 ? "white" : "#555555",
+                    borderColor: "gray",
+                    backgroundColor: page === i + 1 ? "gray" : "transparent",
+                    "&:hover": {
+                      backgroundColor: page === i + 1 ? "#555555" : "#e0e0e0",
+                      borderColor: "#003d99",
+                    },
+                  }}
                 >
                   {i + 1}
                 </Button>
               ))}
             </div>
+
+            {/* NEXT PAGE button */}
             {page < totalPages && (
               <Button
                 onClick={() => setPage(page + 1)}
+                endIcon={<ArrowForwardIosIcon />}
                 variant="text"
-                sx={{ fontWeight: "bold" }}
+                sx={{
+                  fontWeight: "bold",
+                  color: "#555555",
+                  "&:hover": {
+                    color: "black",
+                    backgroundColor: "#f0f0f0",
+                  },
+                }}
               >
-                NEXT PAGE ➤
+                NEXT PAGE
               </Button>
             )}
           </div>
         )}
 
         {showButton && (
-          <div className="mt-12">
-            <Link to="/projects">
-              <Button variant="contained" color="error" size="large">
-                View All Projects
-              </Button>
+          <div className="mt-6">
+            <Link
+              to="/projects"
+              className="inline-block bg-red-700 text-white font-semibold px-6 py-3 rounded hover:bg-red-800 transition"
+            >
+              View All Projects
             </Link>
           </div>
         )}

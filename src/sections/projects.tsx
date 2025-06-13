@@ -13,18 +13,18 @@ const Projects = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100 text-center">
+    <div className="flex flex-col min-h-screen  text-center">
       <Navbar />
       <main className="flex-grow bg-cover bg-center pt-20 md:pt-28 pb-16 px-4 text-black">
         <ProjetcsList showTitle={true} />
       </main>
       {/* Proyectos recientes */}
-      <section id="projects" className="bg-gray-100 py-16 px-4">
+      <section id="projects" className="bg-gray-200 py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
             Recent Projects
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center text-lg font-semibold text-black">
             <ZoomableImage
               src={edificio170}
               alt="170 Erie"
@@ -57,7 +57,7 @@ const Projects = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Proyecto 1 */}
-            <div className="bg-white rounded-xl shadow-md overflow-hidden transition hover:shadow-xl">
+            <div className="bg-gray-200 rounded-xl shadow-md overflow-hidden transition hover:shadow-xl">
               <img
                 src={ladrilloedificiouPcomin}
                 alt="8619 Bergenline Avenue"
@@ -80,7 +80,7 @@ const Projects = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-xl shadow-md overflow-hidden transition hover:shadow-xl">
+            <div className="bg-gray-200 rounded-xl shadow-md overflow-hidden transition hover:shadow-xl">
               <img
                 src={edificiosUpcomin}
                 alt="130 Avenue F, Bayonne"
@@ -107,11 +107,13 @@ const Projects = () => {
           </div>
         </div>
       </section>
+
       {/* UPCOMING PROJECTS  */}
-      <section className="bg-white py-16 px-4" id="upcoming-projects">
+      <section className="bg-gray-200 py-16 px-4" id="upcoming-projects">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             UPCOMING PROJECTS
+            <span className="block w-20 h-1 bg-red-700 mx-auto mt-3 rounded"></span>
           </h2>
 
           {/* Grid de texto de proyectos */}
@@ -145,6 +147,7 @@ const Projects = () => {
           </div>
         </div>
       </section>
+
       <ContactSection />
     </div>
   );
