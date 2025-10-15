@@ -36,7 +36,7 @@ const ContactSection = () => {
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-2">Let's talk</h2>
             <p className="font-semibold">NKJ CONSTRUCTION LLC</p>
-            <p>Bergenfield, New Jersey</p>
+            <p>Branchburg, New Jersey, 08876, USA </p>
           </div>
 
           {/* Columna 2 */}
@@ -51,11 +51,11 @@ const ContactSection = () => {
               @nkjconstructionllc
             </a>
             <a
-              href="mailto:nigel@nkjconstruction.com"
+              href="mailto:info@nkjconstruction.com"
               className="flex items-center gap-3 hover:underline"
             >
               <FaEnvelope className="text-red-500 text-xl" />
-              nigel@nkjconstruction.com
+              info@nkjconstruction.com
             </a>
           </div>
 
@@ -81,7 +81,7 @@ const ContactSection = () => {
             >
               <FaInstagram className="hover:text-red-400" />
             </a>
-            <a href="mailto:nigel@nkjconstruction.com" aria-label="Email">
+            <a href="mailto:info@nkjconstruction.com" aria-label="Email">
               <FaEnvelope className="hover:text-red-400" />
             </a>
           </div>
