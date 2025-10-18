@@ -5,6 +5,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import ServiceList from "../components/serviceList";
 import WhyChooseUs from "../components/WhyChooseUs";
 import Navbar from "../components/navbar";
+import ContactForm from "../components/ContactForm";
 import ZoomableImage from "../components/ZoomableImage"; // Ajusta la ruta según tu estructura
 import logo from "../assets/logo.png";
 import portada3 from "../assets/portada3.png";
@@ -180,6 +181,10 @@ const Home = () => {
       </AnimatedSection>
       <div className=" max-w-6xl mx-auto bg-red-800 h-3 w-full"></div>
       {/* Contactanos */}
+      <AnimatedSection>
+        <ContactForm />
+      </AnimatedSection>
+
       <AnimatedSection>
         <ContactSection />
       </AnimatedSection>
