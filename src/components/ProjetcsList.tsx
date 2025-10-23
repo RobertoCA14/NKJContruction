@@ -12,10 +12,17 @@ import ZoomableImage from "../components/ZoomableImage";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Link } from "react-router-dom";
-
-// 🔹 Firebase imports
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+
+interface Project {
+  id: string;
+  images?: string[];
+  location?: string;
+  developer?: string;
+  squareFootage?: string;
+  value?: string;
+}
 
 interface ProjectsListProps {
   limit?: number;
@@ -30,20 +37,20 @@ const ProjectsList = ({
   showButton = false,
   useSlider = false,
 }: ProjectsListProps) => {
-  const [projects, setProjects] = useState<any[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   const itemsPerPage = 6;
   const [page, setPage] = useState(1);
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
+  const prevRef = useRef<HTMLButtonElement | null>(null);
+  const nextRef = useRef<HTMLButtonElement | null>(null);
 
-  // 🔄 Cargar proyectos desde Firebase
   useEffect(() => {
     const fetchProjects = async () => {
       const snapshot = await getDocs(collection(db, "projects"));
+      // ✅ sin category: mostrar solo “completed” si lo tiene, o todos si no existe
       const data = snapshot.docs
         .map((doc) => ({ id: doc.id, ...doc.data() }))
-        .filter((proj) => proj.category === "completed"); // solo completed
-      setProjects(data);
+        .filter((proj: any) => !proj.category || proj.category === "completed");
+      setProjects(data as Project[]);
     };
     fetchProjects();
   }, []);
@@ -59,7 +66,7 @@ const ProjectsList = ({
   );
 
   return (
-    <section id="services" className="bg-white py-4 px-4 text-center text-white">
+    <section id="projects" className="bg-white py-4 px-4 text-center">
       <div className="max-w-[90rem] mx-auto">
         {showTitle && (
           <motion.h2
@@ -73,7 +80,7 @@ const ProjectsList = ({
           </motion.h2>
         )}
 
-        {/* 🔹 Si usa slider */}
+        {/* 🔹 Slider */}
         {useSlider ? (
           <div className="relative">
             <IconButton
@@ -156,11 +163,8 @@ const ProjectsList = ({
                         }}
                       >
                         <div className="absolute bottom-0 w-full bg-black bg-opacity-60 p-4 text-left text-white">
-                          {/* <h3 className="text-lg font-bold text-red-300 mb-1">
-                          
-                          </h3> */}
                           <h3 className="text-lg font-semibold text-white">
-                          {project.location || "Unknown location"}
+                            {project.location || "Unknown location"}
                           </h3>
                         </div>
                       </div>
@@ -168,13 +172,15 @@ const ProjectsList = ({
                   ))}
                 </Swiper>
               ) : (
-                <p className="text-gray-600 py-10">No completed projects found.</p>
+                <p className="text-gray-600 py-10">
+                  No completed projects found.
+                </p>
               )}
             </div>
           </div>
         ) : (
           // 🔹 Grid con paginación
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-12 px-4 md:px-8 bg-gray">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-12 px-4 md:px-8">
             {paginatedProjects.length > 0 ? (
               paginatedProjects.map((project, i) => (
                 <motion.div
@@ -186,18 +192,16 @@ const ProjectsList = ({
                   className="overflow-hidden rounded-lg hover:shadow-xl transition-all duration-300"
                 >
                   <ZoomableImage
-                    src={project.images?.[0]}
-                    alt={project.location}
+                    src={project.images?.[0] ?? ""}
+                    alt={project.location || "Unknown location"}
                     className="w-full h-auto aspect-[4/3] object-cover rounded-lg"
                     title=""
                   />
+
                   <div className="pt-4 text-left px-4">
                     <p className="text-l uppercase tracking-wide text-red-600 font-medium">
                       {project.location || "Unknown location"}
                     </p>
-                    {/* <h3 className="text-lg font-semibold text-black">
-                      {project.developer || "Developer not specified"}
-                    </h3> */}
                   </div>
                 </motion.div>
               ))
