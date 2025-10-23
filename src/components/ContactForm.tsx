@@ -100,7 +100,7 @@ const ContactForm = () => {
         <input
           type="tel"
           name="phone"
-          placeholder="Your Phone (e.g. +1 (809) 555-1234 or +34 600123456)"
+          placeholder="Your Phone"
           value={formData.phone}
           onChange={handlePhoneChange}
           className="w-full p-3 border rounded"

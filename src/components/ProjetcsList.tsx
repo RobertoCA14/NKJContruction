@@ -211,7 +211,7 @@ const ProjectsList = ({
                   />
 
                   <div className="pt-4 text-left px-4">
-                    <p className="text-l uppercase tracking-wide text-red-600 font-medium">
+                    <p className="text-lg uppercase tracking-wide font-bold text-gray-900 font-bold">
                       {project.location || "Unknown location"}
                     </p>
                   </div>

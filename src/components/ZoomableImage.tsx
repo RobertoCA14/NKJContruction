@@ -27,7 +27,12 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({
           className={`w-[350px] h-[300px] object-cover rounded shadow-md cursor-zoom-in transition hover:scale-105 ${className}`}
         />
 
-        {title && <p className="mt-4 font-bold text-red-700">{title}</p>}
+        {title && (
+          <p className="mt-4 text-l uppercase tracking-wide font-bold text-gray-900 text-left">
+            {title}
+          </p>
+        )}
+
         {subtitle && <p className="text-sm">{subtitle}</p>}
       </div>
 
