@@ -14,13 +14,28 @@ import ZoomableImage from "../components/ZoomableImage";
 const Projects = () => {
   const [projects, setProjects] = useState<any[]>([]);
 
-  // 🔄 Cargar proyectos desde Firebase
+  interface Project {
+    id: string;
+    category?: string;
+    location?: string;
+    images?: string[];
+    developer?: string;
+    // agrega los demás campos que uses si quieres más precisión
+  }
+
   useEffect(() => {
-    window.scrollTo(0, 0);
     const fetchProjects = async () => {
       const snapshot = await getDocs(collection(db, "projects"));
-      setProjects(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+      const data: Project[] = snapshot.docs.map((doc) => {
+        const projectData = doc.data() as Omit<Project, "id">; // 🔹 excluye id del tipo base
+        return { id: doc.id, ...projectData }; // 🔹 combina id + data correctamente
+      });
+
+      // 🔹 ahora TypeScript reconoce que 'category' existe
+      const filtered = data.filter((proj) => proj.category === "completed");
+      setProjects(filtered);
     };
+
     fetchProjects();
   }, []);
 
@@ -37,51 +52,47 @@ const Projects = () => {
       </main>
 
       {/* 🔹 RECENT PROJECTS */}
-<section id="projects" className="bg-gray-200 py-16 px-4">
-  <div className="max-w-6xl mx-auto text-center">
-    <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-      Recent Projects
-    </h2>
-    <span className="block w-20 h-1 bg-red-700 mx-auto mb-12 rounded"></span>
+      <section id="projects" className="bg-gray-200 py-16 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+            Recent Projects
+          </h2>
+          <span className="block w-20 h-1 bg-red-700 mx-auto mb-12 rounded"></span>
 
-    {recentProjects.length > 0 ? (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center text-lg font-semibold text-black">
-        {recentProjects.map((proj) => (
-          <ZoomableImage
-            key={proj.id}
-            src={proj.images?.[0]}
-            alt={proj.location}
-            title={proj.location}
-          />
-        ))}
-      </div>
-    ) : (
-      <div className="flex flex-col items-center justify-center text-gray-700 mt-10">
-        <svg
-          className="w-16 h-16 text-red-700 animate-bounce mb-4"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M13 16h-1v-4h-1m1-4h.01M12 20h.01M4 4h16v16H4z"
-          />
-        </svg>
-        <p className="text-lg font-semibold">No recent projects yet.</p>
-        <p className="text-sm text-gray-500">
-          Stay tuned! We’re constantly working on new developments.
-        </p>
-      </div>
-    )}
-  </div>
-</section>
-
-
-
-
+          {recentProjects.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center text-lg font-semibold text-black">
+              {recentProjects.map((proj) => (
+                <ZoomableImage
+                  key={proj.id}
+                  src={proj.images?.[0]}
+                  alt={proj.location}
+                  title={proj.location}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center text-gray-700 mt-10">
+              <svg
+                className="w-16 h-16 text-red-700 animate-bounce mb-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13 16h-1v-4h-1m1-4h.01M12 20h.01M4 4h16v16H4z"
+                />
+              </svg>
+              <p className="text-lg font-semibold">No recent projects yet.</p>
+              <p className="text-sm text-gray-500">
+                Stay tuned! We’re constantly working on new developments.
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* 🔹 CURRENT PROJECTS (Estático, como el original)
       <section className="bg-white py-16 px-4" id="current-projects">
@@ -145,63 +156,63 @@ const Projects = () => {
         </div>
       </section> */}
 
-      
-<section className="bg-gray-200 py-16 px-4" id="upcoming-projects">
-  <div className="max-w-6xl mx-auto text-center">
-    <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-      Upcoming Projects
-    </h2>
-    <span className="block w-20 h-1 bg-red-700 mx-auto mb-12 rounded"></span>
+      <section className="bg-gray-200 py-16 px-4" id="upcoming-projects">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+            Upcoming Projects
+          </h2>
+          <span className="block w-20 h-1 bg-red-700 mx-auto mb-12 rounded"></span>
 
-    {upcomingProjects.length > 0 ? (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center text-lg font-semibold text-black">
-        {upcomingProjects.map((proj) => (
-          <div
-            key={proj.id}
-            className="text-center space-y-2 transition-transform hover:scale-105 duration-300"
-          >
-            <ZoomableImage
-              src={proj.images?.[0]}
-              alt={proj.location}
-              title={proj.location}
-            />
-            <p>
-              📐 Square Footage:{" "}
-              <strong>{proj.squareFootage || "N/A"}</strong>
-            </p>
-            <p>
-              💸 Contract Value: <strong>{proj.value || "N/A"}</strong>
-            </p>
-            <p>
-              🏗️ Developer/GC: <strong>{proj.developer || "N/A"}</strong>
-            </p>
-          </div>
-        ))}
-      </div>
-    ) : (
-      <div className="flex flex-col items-center justify-center text-gray-700 mt-10">
-        <svg
-          className="w-16 h-16 text-red-700 animate-bounce mb-4"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M13 16h-1v-4h-1m1-4h.01M12 20h.01M4 4h16v16H4z"
-          />
-        </svg>
-        <p className="text-lg font-semibold">No upcoming projects for now.</p>
-        <p className="text-sm text-gray-500">
-          Check back soon for our next big development!
-        </p>
-      </div>
-    )}
-  </div>
-</section>
-
+          {upcomingProjects.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center text-lg font-semibold text-black">
+              {upcomingProjects.map((proj) => (
+                <div
+                  key={proj.id}
+                  className="text-center space-y-2 transition-transform hover:scale-105 duration-300"
+                >
+                  <ZoomableImage
+                    src={proj.images?.[0]}
+                    alt={proj.location}
+                    title={proj.location}
+                  />
+                  <p>
+                    📐 Square Footage:{" "}
+                    <strong>{proj.squareFootage || "N/A"}</strong>
+                  </p>
+                  <p>
+                    💸 Contract Value: <strong>{proj.value || "N/A"}</strong>
+                  </p>
+                  <p>
+                    🏗️ Developer/GC: <strong>{proj.developer || "N/A"}</strong>
+                  </p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center text-gray-700 mt-10">
+              <svg
+                className="w-16 h-16 text-red-700 animate-bounce mb-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13 16h-1v-4h-1m1-4h.01M12 20h.01M4 4h16v16H4z"
+                />
+              </svg>
+              <p className="text-lg font-semibold">
+                No upcoming projects for now.
+              </p>
+              <p className="text-sm text-gray-500">
+                Check back soon for our next big development!
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
 
       <ContactSection />
     </div>
