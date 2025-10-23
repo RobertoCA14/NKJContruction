@@ -74,9 +74,21 @@ const ProjectsList = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold mb-10 text-gray-800"
+            className="text-3xl md:text-4xl  mb-10 text-gray-800"
           >
-            Completed Projects
+            <h1 className=" font-bold mb-10 text-gray-800">
+              Building Strength, One Project at a Time
+            </h1>
+            <p className="text-red-700 italic mt-3 font-semibold text-lg md:text-2xl">
+              A Proven Track Record: 25+ Masonry Projects Delivered
+            </p>
+
+            <p className="max-w-4xl mx-auto text-gray-800 mt-2 leading-relaxed text-base md:text-lg">
+              With over twenty-five completed masonry projects, we continue to
+              set the standard for reliability, durability, and exceptional
+              workmanship. Each project reflects our commitment to quality,
+              precision, and lasting results that stand the test of time.
+            </p>
           </motion.h2>
         )}
 

@@ -368,7 +368,9 @@ const AdminPanel: React.FC = () => {
                           Edit
                         </button>
                         <button
-                          onClick={() => handleDelete(project.id, project.images)}
+                          onClick={() =>
+                            handleDelete(project.id, project.images)
+                          }
                           className="bg-red-600 hover:bg-red-700 text-white px-4 py-1.5 rounded transition"
                         >
                           Delete
@@ -401,4 +403,3 @@ const AdminPanel: React.FC = () => {
 };
 
 export default AdminPanel;
-

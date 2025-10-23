@@ -42,7 +42,7 @@ const Projects = () => {
   // 🔹 Clasificación por categoría
   const recentProjects = projects.filter((p) => p.category === "recent");
   // const completedProjects = projects.filter((p) => p.category === "completed");
-  const upcomingProjects = projects.filter((p) => p.category === "upcoming");
+  // const upcomingProjects = projects.filter((p) => p.category === "upcoming");
 
   return (
     <div className="flex flex-col min-h-screen text-center">
@@ -156,7 +156,7 @@ const Projects = () => {
         </div>
       </section> */}
 
-      <section className="bg-gray-200 py-16 px-4" id="upcoming-projects">
+      {/* <section className="bg-gray-200 py-16 px-4" id="upcoming-projects">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
             Upcoming Projects
@@ -212,7 +212,7 @@ const Projects = () => {
             </div>
           )}
         </div>
-      </section>
+      </section> */}
 
       <ContactSection />
     </div>
