@@ -13,24 +13,24 @@ import ZoomableImage from "../components/ZoomableImage";
 
 const Projects = () => {
   const [projects, setProjects] = useState<any[]>([]);
-
   interface Project {
     id: string;
     category?: string;
     location?: string;
     images?: string[];
     developer?: string;
-    [key: string]: any; // ← 🔹 Esta línea evita errores de tipos desconocidos
+    [key: string]: any; // 🔹 agrega flexibilidad y evita el error TS2339
   }
 
   useEffect(() => {
     const fetchProjects = async () => {
       const snapshot = await getDocs(collection(db, "projects"));
-      const data = snapshot.docs.map((doc) => {
-        const raw = doc.data() as Project;
-        return { ...raw, id: doc.id }; // no repite id
+      const data: Project[] = snapshot.docs.map((doc) => {
+        const projectData = doc.data() as Project;
+        return { ...projectData, id: doc.id };
       });
 
+      // 🔹 TypeScript ya reconoce que 'category' existe
       const filtered = data.filter((proj) => proj.category === "completed");
       setProjects(filtered);
     };
