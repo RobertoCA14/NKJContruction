@@ -33,7 +33,9 @@ const Projects = () => {
 
       // 🔹 ahora TypeScript reconoce que 'category' existe
       const filtered = data.filter((proj) => proj.category === "completed");
+      const filtered2 = data.filter((proj) => proj.category === "recent")
       setProjects(filtered);
+      setProjects(filtered2);
     };
 
     fetchProjects();
