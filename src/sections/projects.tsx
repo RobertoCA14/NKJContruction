@@ -20,18 +20,17 @@ const Projects = () => {
     location?: string;
     images?: string[];
     developer?: string;
-    // agrega los demás campos que uses si quieres más precisión
+    [key: string]: any; // ← 🔹 Esta línea evita errores de tipos desconocidos
   }
 
   useEffect(() => {
     const fetchProjects = async () => {
       const snapshot = await getDocs(collection(db, "projects"));
-      const data: Project[] = snapshot.docs.map((doc) => {
-        const projectData = doc.data() as Omit<Project, "id">; // 🔹 excluye id del tipo base
-        return { id: doc.id, ...projectData }; // 🔹 combina id + data correctamente
+      const data = snapshot.docs.map((doc) => {
+        const raw = doc.data() as Project;
+        return { ...raw, id: doc.id }; // no repite id
       });
 
-      // 🔹 ahora TypeScript reconoce que 'category' existe
       const filtered = data.filter((proj) => proj.category === "completed");
       setProjects(filtered);
     };
