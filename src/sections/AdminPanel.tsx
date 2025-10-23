@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { db, auth } from "../firebaseConfig";
 import {
   collection,
@@ -23,8 +23,11 @@ const AdminPanel: React.FC = () => {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
+  const [zoomImage, setZoomImage] = useState<string | null>(null);
 
-  // 🧠 Cargar proyectos existentes
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  // 🧠 Load existing projects
   useEffect(() => {
     const fetchProjects = async () => {
       const snapshot = await getDocs(collection(db, "projects"));
@@ -33,7 +36,7 @@ const AdminPanel: React.FC = () => {
     fetchProjects();
   }, []);
 
-  // 📸 Mostrar vista previa local
+  // 📸 Local preview
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     setImages(files);
@@ -45,7 +48,7 @@ const AdminPanel: React.FC = () => {
     }
   };
 
-  // 📤 Subir imágenes (solo funciona en producción real)
+  // ☁️ Upload images
   const uploadImages = async (): Promise<string[]> => {
     if (!images) return [];
     const urls: string[] = [];
@@ -54,15 +57,16 @@ const AdminPanel: React.FC = () => {
     for (const file of Array.from(images)) {
       const formData = new FormData();
       formData.append("file", file);
+
       try {
         const res = await fetch("https://nkj-backend.vercel.app/api/upload", {
           method: "POST",
           body: formData,
         });
         const data = await res.json();
-        if (data.url) urls.push(data.url);
+        if (data.success && data.url) urls.push(data.url);
       } catch (err) {
-        console.warn("⚠️ No se pudo subir la imagen (modo desarrollo).");
+        console.error("❌ Image upload error:", err);
       }
     }
 
@@ -70,16 +74,18 @@ const AdminPanel: React.FC = () => {
     return urls;
   };
 
-  // 💾 Guardar o actualizar proyecto
+  // 💾 Save or update project
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
+
     try {
-      const newImages = await uploadImages();
+      const uploadedUrls = images ? await uploadImages() : [];
+      const finalImages = uploadedUrls.length > 0 ? uploadedUrls : previewUrls;
+
       const projectData: any = {
         category,
         location,
-        // 👇 Si no hay URL reales, guardamos las locales (solo para pruebas)
-        images: newImages.length ? newImages : previewUrls,
+        images: finalImages,
         createdAt: Timestamp.now(),
       };
 
@@ -92,37 +98,42 @@ const AdminPanel: React.FC = () => {
       if (editingId) {
         const projectRef = doc(db, "projects", editingId);
         await updateDoc(projectRef, projectData);
-        setMessage("✅ Proyecto actualizado correctamente.");
+        setMessage("✅ Project updated successfully.");
       } else {
         await addDoc(collection(db, "projects"), projectData);
-        setMessage("✅ Proyecto guardado correctamente.");
+        setMessage("✅ Project saved successfully.");
       }
 
+      setImages(null);
+      setPreviewUrls([]);
+      if (fileInputRef.current) fileInputRef.current.value = "";
       resetForm();
       refreshProjects();
+
+      setTimeout(() => setMessage(""), 3000);
     } catch (error) {
       console.error(error);
-      setMessage("❌ Error al guardar el proyecto.");
+      setMessage("❌ Error saving the project.");
     }
   };
 
-  // 🔄 Recargar lista
+  // 🔄 Refresh list
   const refreshProjects = async () => {
     const snapshot = await getDocs(collection(db, "projects"));
     setProjects(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
   };
 
+  // 🔙 Reset form
   const resetForm = () => {
     setCategory("completed");
     setLocation("");
     setSquareFootage("");
     setValue("");
     setDeveloper("");
-    setImages(null);
-    setPreviewUrls([]);
     setEditingId(null);
   };
 
+  // ✏️ Edit project
   const handleEdit = (project: any) => {
     setEditingId(project.id);
     setCategory(project.category);
@@ -131,17 +142,16 @@ const AdminPanel: React.FC = () => {
     setValue(project.value || "");
     setDeveloper(project.developer || "");
     setPreviewUrls(project.images || []);
-    setMessage("✏️ Modo edición activado.");
+    setMessage("✏️ Edit mode activated.");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // 🗑️ Delete project
   const handleDelete = async (id: string, images?: string[]) => {
-    if (!confirm("¿Seguro que deseas eliminar este proyecto?")) return;
-
-    // 1️⃣ Eliminar del Firestore
+    if (!confirm("Are you sure you want to delete this project?")) return;
     await deleteDoc(doc(db, "projects", id));
-    setMessage("🗑️ Proyecto eliminado.");
+    setMessage("🗑️ Project deleted.");
 
-    // 2️⃣ Eliminar las imágenes del backend (Vercel Blob)
     if (images && images.length > 0) {
       for (const url of images) {
         try {
@@ -151,7 +161,7 @@ const AdminPanel: React.FC = () => {
             body: JSON.stringify({ url }),
           });
         } catch (err) {
-          console.warn("⚠️ No se pudo eliminar del Blob:", err);
+          console.warn("⚠️ Could not delete from Blob:", err);
         }
       }
     }
@@ -159,6 +169,7 @@ const AdminPanel: React.FC = () => {
     refreshProjects();
   };
 
+  // 🚪 Logout
   const handleLogout = async () => {
     await signOut(auth);
     window.location.href = "/";
@@ -166,15 +177,16 @@ const AdminPanel: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center py-10 px-4">
+      {/* 🔹 Form Section (igualito) */}
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl">
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
-          Panel Administrativo
+          Administrative Panel
         </h1>
 
-        {/* Formulario */}
         <form onSubmit={handleSave} className="space-y-4">
+          {/* Campos igual que antes */}
           <div>
-            <label className="font-semibold block mb-1">Categoría</label>
+            <label className="font-semibold block mb-1">Category</label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
@@ -187,7 +199,7 @@ const AdminPanel: React.FC = () => {
           </div>
 
           <div>
-            <label className="font-semibold block mb-1">Dirección</label>
+            <label className="font-semibold block mb-1">Address</label>
             <input
               type="text"
               value={location}
@@ -234,8 +246,9 @@ const AdminPanel: React.FC = () => {
           )}
 
           <div>
-            <label className="font-semibold block mb-1">Imágenes</label>
+            <label className="font-semibold block mb-1">Images</label>
             <input
+              ref={fileInputRef}
               type="file"
               multiple
               accept="image/*"
@@ -244,7 +257,6 @@ const AdminPanel: React.FC = () => {
             />
           </div>
 
-          {/* 👇 Vista previa de imágenes */}
           {previewUrls.length > 0 && (
             <div className="grid grid-cols-3 gap-3 mt-2">
               {previewUrls.map((url, i) => (
@@ -264,10 +276,10 @@ const AdminPanel: React.FC = () => {
             className="w-full bg-red-700 hover:bg-red-800 text-white py-2 rounded"
           >
             {uploading
-              ? "Subiendo imágenes..."
+              ? "Uploading images..."
               : editingId
-              ? "Actualizar proyecto"
-              : "Guardar proyecto"}
+              ? "Update project"
+              : "Save project"}
           </button>
         </form>
 
@@ -281,59 +293,109 @@ const AdminPanel: React.FC = () => {
           onClick={handleLogout}
           className="mt-6 w-full bg-gray-700 hover:bg-gray-800 text-white py-2 rounded"
         >
-          Cerrar sesión
+          Log out
         </button>
       </div>
 
-      {/* Listado de proyectos */}
-      <div className="w-full max-w-5xl mt-10">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">
-          Proyectos guardados
+      {/* 🔹 Project List (solo mejoradas imágenes + zoom) */}
+      <div className="w-full max-w-6xl mt-10">
+        <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
+          Saved Projects
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="bg-white shadow-md rounded-lg p-4 border border-gray-200"
-            >
-              {project.images?.length > 0 && (
-                <img
-                  src={project.images[0]}
-                  alt={project.location}
-                  className="w-full h-48 object-cover rounded"
-                />
-              )}
-              <h3 className="text-lg font-bold mt-2 text-red-700">
-                {project.location}
+
+        {["completed", "upcoming", "recent"].map((cat) => {
+          const filtered = projects.filter((p) => p.category === cat);
+          if (filtered.length === 0) return null;
+
+          return (
+            <div key={cat} className="mb-14">
+              <h3 className="text-2xl font-semibold text-red-700 mb-8 text-center uppercase tracking-wide">
+                {cat} Projects
               </h3>
-              <p className="text-sm text-gray-600 capitalize">
-                {project.category}
-              </p>
 
-              {project.value && (
-                <p className="text-sm text-gray-600">
-                  💰 ${project.value} — {project.squareFootage} ft²
-                </p>
-              )}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center">
+                {filtered.map((project) => (
+                  <div
+                    key={project.id}
+                    className="bg-white rounded-xl shadow-lg overflow-hidden transform transition hover:scale-105 hover:shadow-2xl w-full max-w-sm"
+                  >
+                    {project.images?.length > 0 ? (
+                      <div
+                        className="relative group cursor-pointer"
+                        onClick={() => setZoomImage(project.images[0])}
+                      >
+                        <img
+                          src={project.images[0]}
+                          alt={project.location}
+                          className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                      </div>
+                    ) : (
+                      <div className="w-full h-72 flex items-center justify-center bg-gray-200 text-gray-500 italic">
+                        No image
+                      </div>
+                    )}
 
-              <div className="flex justify-between mt-3">
-                <button
-                  onClick={() => handleEdit(project)}
-                  className="bg-yellow-500 text-white px-3 py-1 rounded"
-                >
-                  Editar
-                </button>
-                <button
-                  onClick={() => handleDelete(project.id)}
-                  className="bg-red-600 text-white px-3 py-1 rounded"
-                >
-                  Eliminar
-                </button>
+                    <div className="p-5 text-center">
+                      <h3 className="text-lg font-bold text-red-700 mb-1">
+                        {project.location}
+                      </h3>
+                      <p className="text-sm text-gray-600 capitalize">
+                        {project.category}
+                      </p>
+                      {project.squareFootage && (
+                        <p className="text-sm text-gray-600 mt-1">
+                          📐 {project.squareFootage} ft²
+                        </p>
+                      )}
+                      {project.value && (
+                        <p className="text-sm text-gray-600">
+                          💰 ${project.value}
+                        </p>
+                      )}
+                      {project.developer && (
+                        <p className="text-sm text-gray-600">
+                          🏗️ {project.developer}
+                        </p>
+                      )}
+
+                      <div className="flex justify-center gap-4 mt-4">
+                        <button
+                          onClick={() => handleEdit(project)}
+                          className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-1.5 rounded transition"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDelete(project.id, project.images)}
+                          className="bg-red-600 hover:bg-red-700 text-white px-4 py-1.5 rounded transition"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
+
+      {/* 🖼 Modal Zoom */}
+      {zoomImage && (
+        <div
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
+          onClick={() => setZoomImage(null)}
+        >
+          <img
+            src={zoomImage}
+            alt="Zoomed"
+            className="max-w-[90%] max-h-[85%] rounded-xl shadow-2xl cursor-pointer animate-fadeIn"
+          />
+        </div>
+      )}
     </div>
   );
 };

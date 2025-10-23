@@ -1,53 +1,89 @@
+import { useState, useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebaseConfig";
 import Navbar from "../components/navbar";
 import ProjetcsList from "../components/ProjetcsList";
 import ContactSection from "./ContactSection";
-import edificio170 from "../assets/edificio170.png";
-import edificio55 from "../assets/edificio55.png";
-import edifici711 from "../assets/edifici711.png";
-import edificiosUpcomin from "../assets/edificiosUpcomin.png";
-import ladrilloedificiouPcomin from "../assets/ladrilloedificiouPcomin.png";
+// import edificio170 from "../assets/edificio170.png";
+// import edificio55 from "../assets/edificio55.png";
+// import edifici711 from "../assets/edifici711.png";
+// import edificiosUpcomin from "../assets/edificiosUpcomin.png";
+// import ladrilloedificiouPcomin from "../assets/ladrilloedificiouPcomin.png";
 import ZoomableImage from "../components/ZoomableImage";
-import { useEffect } from "react";
+
 const Projects = () => {
+  const [projects, setProjects] = useState<any[]>([]);
+
+  // 🔄 Cargar proyectos desde Firebase
   useEffect(() => {
     window.scrollTo(0, 0);
+    const fetchProjects = async () => {
+      const snapshot = await getDocs(collection(db, "projects"));
+      setProjects(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+    };
+    fetchProjects();
   }, []);
+
+  // 🔹 Clasificación por categoría
+  const recentProjects = projects.filter((p) => p.category === "recent");
+  // const completedProjects = projects.filter((p) => p.category === "completed");
+  const upcomingProjects = projects.filter((p) => p.category === "upcoming");
+
   return (
-    <div className="flex flex-col min-h-screen  text-center">
+    <div className="flex flex-col min-h-screen text-center">
       <Navbar />
       <main className="flex-grow bg-cover bg-center pt-20 md:pt-28 pb-16 px-4 text-black">
         <ProjetcsList showTitle={true} />
       </main>
-      {/* Proyectos recientes */}
-      <section id="projects" className="bg-gray-200 py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-            Recent Projects
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center text-lg font-semibold text-black">
-            <ZoomableImage
-              src={edificio170}
-              alt="170 Erie"
-              title="170 Erie Street"
-              subtitle="Jersey City, NJ 07302"
-            />
-            <ZoomableImage
-              src={edificio55}
-              alt="55 Jordan"
-              title="55 Jordan Avenue"
-              subtitle="Jersey City, NJ 07306"
-            />
-            <ZoomableImage
-              src={edifici711}
-              alt="711 Montgomery"
-              title="711 Montgomery Street"
-              subtitle="Jersey City, NJ 07306"
-            />
-          </div>
-        </div>
-      </section>
-      {/* <div className="w-full h-16 bg-neutral-600"></div> */}
-      {/* Current PROJECTS  */}
+
+      {/* 🔹 RECENT PROJECTS */}
+<section id="projects" className="bg-gray-200 py-16 px-4">
+  <div className="max-w-6xl mx-auto text-center">
+    <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+      Recent Projects
+    </h2>
+    <span className="block w-20 h-1 bg-red-700 mx-auto mb-12 rounded"></span>
+
+    {recentProjects.length > 0 ? (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center text-lg font-semibold text-black">
+        {recentProjects.map((proj) => (
+          <ZoomableImage
+            key={proj.id}
+            src={proj.images?.[0]}
+            alt={proj.location}
+            title={proj.location}
+          />
+        ))}
+      </div>
+    ) : (
+      <div className="flex flex-col items-center justify-center text-gray-700 mt-10">
+        <svg
+          className="w-16 h-16 text-red-700 animate-bounce mb-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M13 16h-1v-4h-1m1-4h.01M12 20h.01M4 4h16v16H4z"
+          />
+        </svg>
+        <p className="text-lg font-semibold">No recent projects yet.</p>
+        <p className="text-sm text-gray-500">
+          Stay tuned! We’re constantly working on new developments.
+        </p>
+      </div>
+    )}
+  </div>
+</section>
+
+
+
+
+
+      {/* 🔹 CURRENT PROJECTS (Estático, como el original)
       <section className="bg-white py-16 px-4" id="current-projects">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-extrabold text-gray-900 text-center relative mb-12">
@@ -56,8 +92,8 @@ const Projects = () => {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Proyecto 1 */}
-            <div className="bg-gray-200 rounded-xl shadow-md overflow-hidden transition hover:shadow-xl">
+            {/* Proyecto estático 1 */}
+      {/* <div className="bg-gray-200 rounded-xl shadow-md overflow-hidden transition hover:shadow-xl">
               <img
                 src={ladrilloedificiouPcomin}
                 alt="8619 Bergenline Avenue"
@@ -80,7 +116,9 @@ const Projects = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-gray-200 rounded-xl shadow-md overflow-hidden transition hover:shadow-xl">
+
+            {/* Proyecto estático 2 */}
+      {/* <div className="bg-gray-200 rounded-xl shadow-md overflow-hidden transition hover:shadow-xl">
               <img
                 src={edificiosUpcomin}
                 alt="130 Avenue F, Bayonne"
@@ -103,50 +141,67 @@ const Projects = () => {
                 </div>
               </div>
             </div>
-            {/* Proyecto 2 */}
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* UPCOMING PROJECTS  */}
-      <section className="bg-gray-200 py-16 px-4" id="upcoming-projects">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            UPCOMING PROJECTS
-            <span className="block w-20 h-1 bg-red-700 mx-auto mt-3 rounded"></span>
-          </h2>
+      
+<section className="bg-gray-200 py-16 px-4" id="upcoming-projects">
+  <div className="max-w-6xl mx-auto text-center">
+    <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+      Upcoming Projects
+    </h2>
+    <span className="block w-20 h-1 bg-red-700 mx-auto mb-12 rounded"></span>
 
-          {/* Grid de texto de proyectos */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center  mb-12">
-            <div className="bg-gray-50 rounded-xl p-6 shadow space-y-2 text-left">
-              <h3 className="text-red-700 font-semibold text-lg">
-                The Madera, Fort Lee NJ
-              </h3>
-              <p>📐Square Footage: 260,000 ft²</p>
-              <p>💸Contract Value: $3.6 million</p>
-              <p>🏗️Developer/ GC: Mill Creek</p>
-            </div>
-            <div className="bg-gray-50 rounded-xl p-6 shadow space-y-2 text-left">
-              <h3 className="text-red-700 font-semibold text-lg">22 Fulton</h3>
-              <p>📐Square Footage: 260,000 ft²</p>
-              <p>💸Contract Value: $3.8 million</p>
-              <p>🏗️Developer/ GC: SM&A</p>
-            </div>
-          </div>
-
-          {/* Imágenes lado a lado */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <img
-              src={ladrilloedificiouPcomin}
-              className="rounded-lg shadow object-cover w-full h-[250px]"
+    {upcomingProjects.length > 0 ? (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center text-lg font-semibold text-black">
+        {upcomingProjects.map((proj) => (
+          <div
+            key={proj.id}
+            className="text-center space-y-2 transition-transform hover:scale-105 duration-300"
+          >
+            <ZoomableImage
+              src={proj.images?.[0]}
+              alt={proj.location}
+              title={proj.location}
             />
-            <img
-              src={edificiosUpcomin}
-              className="rounded-lg shadow object-cover w-full h-[250px]"
-            />
+            <p>
+              📐 Square Footage:{" "}
+              <strong>{proj.squareFootage || "N/A"}</strong>
+            </p>
+            <p>
+              💸 Contract Value: <strong>{proj.value || "N/A"}</strong>
+            </p>
+            <p>
+              🏗️ Developer/GC: <strong>{proj.developer || "N/A"}</strong>
+            </p>
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
+    ) : (
+      <div className="flex flex-col items-center justify-center text-gray-700 mt-10">
+        <svg
+          className="w-16 h-16 text-red-700 animate-bounce mb-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M13 16h-1v-4h-1m1-4h.01M12 20h.01M4 4h16v16H4z"
+          />
+        </svg>
+        <p className="text-lg font-semibold">No upcoming projects for now.</p>
+        <p className="text-sm text-gray-500">
+          Check back soon for our next big development!
+        </p>
+      </div>
+    )}
+  </div>
+</section>
+
 
       <ContactSection />
     </div>
