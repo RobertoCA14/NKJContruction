@@ -209,7 +209,7 @@ const AdminPanel: React.FC = () => {
             />
           </div>
 
-          {category !== "completed" && (
+          {/* {category !== "completed" && (
             <>
               <div>
                 <label className="font-semibold block mb-1">
@@ -243,7 +243,7 @@ const AdminPanel: React.FC = () => {
                 />
               </div>
             </>
-          )}
+          )} */}
 
           <div>
             <label className="font-semibold block mb-1">Images</label>
