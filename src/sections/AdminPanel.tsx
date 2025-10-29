@@ -36,16 +36,20 @@ const AdminPanel: React.FC = () => {
     fetchProjects();
   }, []);
 
-  // 📸 Local preview
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    setImages(files);
-    if (files) {
-      const previews = Array.from(files).map((file) =>
-        URL.createObjectURL(file)
-      );
-      setPreviewUrls(previews);
-    }
+    if (!files) return;
+
+    // 🔹 Mantener las imágenes anteriores y agregar las nuevas
+    const newFiles = images ? Array.from(images) : [];
+    const updatedFiles = [...newFiles, ...Array.from(files)];
+    setImages(updatedFiles as unknown as FileList);
+
+    // 🔹 Crear previews acumulativos
+    const newPreviews = Array.from(files).map((file) =>
+      URL.createObjectURL(file)
+    );
+    setPreviewUrls((prev) => [...prev, ...newPreviews]);
   };
 
   // ☁️ Upload images
@@ -54,20 +58,23 @@ const AdminPanel: React.FC = () => {
     const urls: string[] = [];
     setUploading(true);
 
+    const formData = new FormData();
     for (const file of Array.from(images)) {
-      const formData = new FormData();
       formData.append("file", file);
+    }
 
-      try {
-        const res = await fetch("https://nkj-backend.vercel.app/api/upload", {
-          method: "POST",
-          body: formData,
-        });
-        const data = await res.json();
-        if (data.success && data.url) urls.push(data.url);
-      } catch (err) {
-        console.error("❌ Image upload error:", err);
+    try {
+      const res = await fetch("https://nkj-backend.vercel.app/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+
+      if (data.success && data.urls) {
+        urls.push(...data.urls); // 👈 guarda todas las URLs
       }
+    } catch (err) {
+      console.error("❌ Error al subir imágenes:", err);
     }
 
     setUploading(false);
@@ -260,12 +267,28 @@ const AdminPanel: React.FC = () => {
           {previewUrls.length > 0 && (
             <div className="grid grid-cols-3 gap-3 mt-2">
               {previewUrls.map((url, i) => (
-                <img
-                  key={i}
-                  src={url}
-                  alt="preview"
-                  className="w-full h-28 object-cover rounded border"
-                />
+                <div key={i} className="relative">
+                  <img
+                    src={url}
+                    alt={`preview-${i}`}
+                    className="w-full h-28 object-cover rounded border"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setPreviewUrls(previewUrls.filter((_, idx) => idx !== i));
+                      if (images) {
+                        const updated = Array.from(images).filter(
+                          (_, idx) => idx !== i
+                        );
+                        setImages(updated as unknown as FileList);
+                      }
+                    }}
+                    className="absolute top-1 right-1 bg-black/60 text-white rounded-full px-2 py-1 text-xs hover:bg-red-600"
+                  >
+                    ✕
+                  </button>
+                </div>
               ))}
             </div>
           )}
