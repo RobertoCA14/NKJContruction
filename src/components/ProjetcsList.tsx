@@ -178,11 +178,11 @@ const ProjectsList = ({
                           }}
                         >
                           {/* 🔹 Copyright dentro de la imagen, abajo izquierda */}
-                          {project.copyright && (
+                          {/* {project.copyright && (
                             <p className="absolute bottom-2 left-3 text-[11px] italic text-gray-200 bg-black/50 px-2 py-[1px] rounded-md select-none">
                               © {project.copyright}
                             </p>
-                          )}
+                          )} */}
                         </div>
 
                         {/* 🔹 Texto debajo de la imagen */}

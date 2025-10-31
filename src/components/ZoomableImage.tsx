@@ -45,13 +45,6 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({
           className={`w-[350px] h-[300px] object-cover rounded shadow-md cursor-zoom-in transition hover:scale-105 ${className}`}
         />
 
-        {/* 🔹 Copyright visible sobre la imagen */}
-        {copyright && (
-          <p className="absolute bottom-2 left-3 text-[13px] italic text-gray-200 bg-black/50 px-2 py-[1px] rounded-md">
-            © {copyright}
-          </p>
-        )}
-
         {/* 🔹 Tooltip: Click to zoom */}
         <span className="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity select-none">
           Click to zoom
