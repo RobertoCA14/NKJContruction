@@ -22,6 +22,7 @@ interface Project {
   developer?: string;
   squareFootage?: string;
   value?: string;
+  copyright?: string;
 }
 
 interface ProjectsListProps {
@@ -163,19 +164,30 @@ const ProjectsList = ({
                 >
                   {projectsToShow.map((project, i) => (
                     <SwiperSlide key={project.id || i}>
-                      <div
-                        className="relative rounded shadow hover:shadow-lg transform hover:scale-105 transition duration-300 overflow-hidden"
-                        style={{
-                          aspectRatio: "5 / 5",
-                          maxHeight: "400px",
-                          width: "100%",
-                          backgroundImage: `url(${project.images?.[0]})`,
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
-                        }}
-                      >
-                        <div className="absolute bottom-0 w-full bg-black bg-opacity-60 p-4 text-left text-white">
-                          <h3 className="text-lg font-semibold text-white">
+                      <div className="rounded shadow hover:shadow-lg transform hover:scale-105 transition duration-300 overflow-hidden">
+                        {/* Imagen principal */}
+                        <div
+                          className="relative"
+                          style={{
+                            aspectRatio: "5 / 5",
+                            maxHeight: "400px",
+                            width: "100%",
+                            backgroundImage: `url(${project.images?.[0]})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                          }}
+                        >
+                          {/* 🔹 Copyright dentro de la imagen, abajo izquierda */}
+                          {project.copyright && (
+                            <p className="absolute bottom-2 left-3 text-[11px] italic text-gray-200 bg-black/50 px-2 py-[1px] rounded-md select-none">
+                              © {project.copyright}
+                            </p>
+                          )}
+                        </div>
+
+                        {/* 🔹 Texto debajo de la imagen */}
+                        <div className="pt-3 text-left px-3 pb-4">
+                          <h3 className="text-lg uppercase tracking-wide font-bold text-gray-900">
                             {project.location || "Unknown location"}
                           </h3>
                         </div>
@@ -208,6 +220,8 @@ const ProjectsList = ({
                     alt={project.location || "Unknown location"}
                     className="w-full h-auto aspect-[4/3] object-cover rounded-lg"
                     title=""
+                    images={project.images} // 👈 importante para que deslice entre todas
+                    copyright={project.copyright}
                   />
 
                   <div className="pt-4 text-left px-4">

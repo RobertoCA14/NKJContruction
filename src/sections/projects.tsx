@@ -51,6 +51,7 @@ const Projects = () => {
       <Navbar />
       <main className="flex-grow bg-cover bg-center pt-20 md:pt-28 pb-16 px-4 text-black">
         <ProjetcsList showTitle={true} />
+       
       </main>
 
       {/* 🔹 RECENT PROJECTS */}
